@@ -1,5 +1,5 @@
-%include "datastructure/MathDefinitions.i"
-%include "core/SolARFrameworkDefinitions.i"
+//%include "datastructure/MathDefinitions.i"
+//%include "core/SolARFrameworkDefinitions.i"
 
 //TODO
 //*
@@ -83,8 +83,8 @@ namespace SolAR
 
 %include "interfaces/datastructure/GeometryDefinitions.h"
 
-%template(Contour2Df) SRef<SolAR::datastructure::Contour2Df>;
-%template(Contour2Di) SRef<SolAR::datastructure::Contour2Di>;
+//%template(Contour2Df) SRef<SolAR::datastructure::Contour2Df>;
+//%template(Contour2Di) SRef<SolAR::datastructure::Contour2Di>;
 //%template(Point2Df) SRef<SolAR::datastructure::Point2Df>;
 //%template(Point2Di) SRef<SolAR::datastructure::Point2Di>;
 

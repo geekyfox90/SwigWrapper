@@ -3,4 +3,4 @@
 %include "datastructure/DescriptorMatch.i"
 %include "datastructure/Keypoint.i"
 
-%include "interfaces/api/features/IKeypointsReIndexer.h"
+%include "interfaces/api/features/IMatchesFilter.h"
