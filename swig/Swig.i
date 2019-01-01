@@ -42,3 +42,29 @@
 
 // Custom
 //%include "std_string_ref.i" //Typemaps for std::string& and const std::string&
+
+// To use non-const std::string references
+%apply const std::string & {std::string &};
+
+
+%{
+#include <xpcf/xpcf.h>
+%}
+
+%exception {
+	try {
+		$action
+	}
+	catch(org::bcom::xpcf::Exception& e) {
+		SWIG_exception(SWIG_RuntimeError, e.what());
+	}
+	SWIG_CATCH_STDEXCEPT // catch std::exception
+	/*
+	catch(const std::exception& e) {
+		SWIG_exception(SWIG_RuntimeError, e.what());
+	}
+	*/
+	catch (...) {
+		SWIG_exception(SWIG_UnknownError, "Unknown exception");
+	}
+}
