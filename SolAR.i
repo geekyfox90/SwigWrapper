@@ -92,6 +92,7 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %}
 
 %define BIND_TO_INTERFACE(NAME, TYPE)
+%rename(bindTo_ ## NAME) bindTo<TYPE>;
 %template(bindTo_ ## NAME) bindTo<TYPE>;
 %enddef
 

@@ -3,11 +3,25 @@
 //%include <boost/uuid/uuid_io.i>
 //%include <string>
 
-%typemap(csclassmodifiers) boost::uuids::uuid "public partial class"
 %rename (UUID) boost::uuids::uuid;
 
-namespace boost {namespace uuids {class uuid {};}}
+namespace boost {namespace uuids {class uuid{};}}
 
+%csmethodmodifiers boost::uuids::uuid::ToString %{public override%};
+
+%extend boost::uuids::uuid
+{
+	uuid(const char* uuidString)
+	{
+		return new boost::uuids::uuid(org::bcom::xpcf::toUUID(uuidString));
+	}
+	const std::string ToString()
+	{
+		return boost::uuids::to_string(*self);
+	}
+}
+
+%ignore org::bcom::xpcf::toUUID(const char * uuidString);
 %ignore org::bcom::xpcf::toUUID(const std::string & uuidString);
 
 %include "xpcf/core/uuid.h"

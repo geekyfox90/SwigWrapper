@@ -3,11 +3,10 @@
 
 %typemap(csimports) org::bcom::xpcf::IEnumerator
 %{
-    using System.Collections;
-    using System.Collections.Generic;
+	using System.Collections;
+	using System.Collections.Generic;
 %}
 
-//%typemap(csinterfaces) org::bcom::xpcf::IEnumerator %{ global::System.IDisposable, IEnumerator %}
 %extend org::bcom::xpcf::IEnumerator
 {
 	%typemap(csinterfaces) org::bcom::xpcf::IEnumerator %{global::System.IDisposable, IEnumerator<$typemap(cstype, T)>%}
@@ -17,9 +16,9 @@
 	%}
 }
 
-%ignore org::bcom::xpcf::IEnumerator::operator==;
-
 %rename(MoveNext) org::bcom::xpcf::IEnumerator::moveNext();
 %rename(Reset) org::bcom::xpcf::IEnumerator::reset();
+
+%ignore org::bcom::xpcf::IEnumerator::operator==;
 
 %include "xpcf/collection/IEnumerator.h"

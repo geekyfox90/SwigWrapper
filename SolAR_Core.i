@@ -10,6 +10,7 @@
 
 ///
 
+%rename(CharList) std::vector<char const *>;
 %template(CharList) std::vector<char const *>;
 
 ///

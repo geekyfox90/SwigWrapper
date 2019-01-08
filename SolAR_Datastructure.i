@@ -44,27 +44,43 @@ using namespace SolAR::datastructure;
 %shared_ptr(SolAR::datastructure::Map)
 %shared_ptr(SolAR::datastructure::Point2Df)
 %shared_ptr(SolAR::datastructure::Point3Df)
+%shared_ptr(SolAR::datastructure::Point2Di)
+%shared_ptr(SolAR::datastructure::Point3Di)
 %shared_ptr(SolAR::datastructure::SquaredBinaryPattern)
 
+%rename(MapIntCloudPoint) std::map<unsigned int, SRef<SolAR::datastructure::CloudPoint>, std::less<unsigned int>>;
 %template(MapIntCloudPoint) std::map<unsigned int, SRef<SolAR::datastructure::CloudPoint>, std::less<unsigned int>>;
+%rename(MapIntInt) std::map<unsigned int, unsigned int, std::less<unsigned int>>;
 %template(MapIntInt) std::map<unsigned int, unsigned int, std::less<unsigned int>>;
 
 // Vector<T>
+%rename(DescriptorMatchVector) std::vector<SolAR::datastructure::DescriptorMatch>;
 %template(DescriptorMatchVector) std::vector<SolAR::datastructure::DescriptorMatch>;
 //SWIG_STD_VECTOR_ENHANCED(SolAR::datastructure::Transform3Df)
+//%rename(Transform3DfList) std::vector<SolAR::datastructure::Transform3Df>;
 //%template(Transform3DfList) std::vector<SolAR::datastructure::Transform3Df>;
+%rename(Transform3DfList) std::vector<SolAR::datastructure::Transform<float,3>>;
 %template(Transform3DfList) std::vector<SolAR::datastructure::Transform<float,3>>;
 //SWIG_STD_VECTOR_ENHANCED(SolAR::datastructure::Point2Df)
+%rename(Point2DfArray) std::vector<SolAR::datastructure::Point2Df>;
 %template(Point2DfArray) std::vector<SolAR::datastructure::Point2Df>;
 
 // Vector<SRef<T>>
+%rename(CloudPointList) std::vector<SRef<SolAR::datastructure::CloudPoint>>;
 %template(CloudPointList) std::vector<SRef<SolAR::datastructure::CloudPoint>>;
+%rename(Contour2DfList) std::vector<SRef<SolAR::datastructure::Contour2Df>>;
 %template(Contour2DfList) std::vector<SRef<SolAR::datastructure::Contour2Df>>;
+%rename(DescriptorBufferList) std::vector<SRef<SolAR::datastructure::DescriptorBuffer>>;
 %template(DescriptorBufferList) std::vector<SRef<SolAR::datastructure::DescriptorBuffer>>;
+%rename(ImageList) std::vector<SRef<SolAR::datastructure::Image>>;
 %template(ImageList) std::vector<SRef<SolAR::datastructure::Image>>;
+%rename(KeyframeList) std::vector<SRef<SolAR::datastructure::Keyframe>>;
 %template(KeyframeList) std::vector<SRef<SolAR::datastructure::Keyframe>>;
+%rename(KeypointList) std::vector<SRef<SolAR::datastructure::Keypoint>>;
 %template(KeypointList) std::vector<SRef<SolAR::datastructure::Keypoint>>;
+%rename(Point2DfList) std::vector<SRef<SolAR::datastructure::Point2Df>>;
 %template(Point2DfList) std::vector<SRef<SolAR::datastructure::Point2Df>>;
+%rename(Point3DfList) std::vector<SRef<SolAR::datastructure::Point3Df>>;
 %template(Point3DfList) std::vector<SRef<SolAR::datastructure::Point3Df>>;
 
 %shared_ptr(std::vector<SRef<SolAR::datastructure::CloudPoint>>);
@@ -73,9 +89,11 @@ using namespace SolAR::datastructure;
 
 %include "Eigen.i"
 
+%ignore SolAR::datastructure::Vector;
 %include "datastructure/MathDefinitions.h"
 
 //%include "datastructure/MathDefinitions.i"
+%rename("$ignore", regextarget=1, fullname=1) "SolAR::datastructure::Point.D.::operator.(.*)";
 %include "datastructure/GeometryDefinitions.h"
 
 %ignore SolAR::datastructure::BufferInternal::data() const;
@@ -131,6 +149,7 @@ void * newPointer()
 %}
 
 %define EMPTY_POINTER(NAME)
+%rename(newPointer_ ## NAME) newPointer<SolAR::datastructure:: ## NAME>;
 %template(newPointer_ ## NAME) newPointer<SolAR::datastructure:: ## NAME>;
 %enddef
 

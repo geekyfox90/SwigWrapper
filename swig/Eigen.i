@@ -1,295 +1,157 @@
-namespace Eigen {
-template <class T, int Rows, int Cols>
-class Matrix {};
-}
-
+namespace Eigen {}
 namespace SolAR{namespace datastructure{
-template <class T, int Dim>
-class Transform {};
-template <class T, int Rows>
-class Vector {};
-}}
-
-%template(Matrix3x3) Eigen::Matrix<float, 3, 3>;
-%template(CamDistortion) Eigen::Matrix<float, 5, 1>;
-%template(Transform2Df) SolAR::datastructure::Transform<float, 2>;
-
-%shared_ptr(SolAR::datastructure::Transform<float, 3>)
-%template(Transform3Df) SolAR::datastructure::Transform<float, 3>;
-
-%shared_ptr(SolAR::datastructure::Vector<float, 3>)
-%template(Vector3f) SolAR::datastructure::Vector<float, 3>;
-
-namespace SolAR{namespace datastructure{
-	class Point2Df
+	namespace Maths {
+		template <class Scalar, int Rows, int Cols>
+		class Matrix
+		{
+// https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html
+		public:
+// Matrix
+			~Matrix();
+			Matrix();
+// PlainObjectBase
+			const Scalar & coeff(int rowId, int colId) const;
+			//Scalar* data();
+// MatrixBase
+			//void adjointInPlace ();
+			Scalar determinant() const;
+			int diagonalSize () const;
+			void normalize();
+			void stableNormalize ();
+			Scalar trace() const;
+// DenseBase
+			bool all() const;
+			bool allFinite() const;
+			bool any() const;
+			int count() const;
+			void fill(const Scalar& value);
+			bool hasNaN() const;
+			int innerSize () const;
+			Scalar mean() const;
+			int nonZeros() const;
+			int outerSize () const;
+			Scalar prod() const;
+			void reverseInPlace ();
+			Scalar sum() const;
+			//void transposeInPlace ();
+// DenseCoeffsBase
+			int colStride() const;
+			int innerStride() const;
+			int outerStride() const;
+			int rowStride() const;
+// EigenBase
+			int cols() const;
+			int rows() const;
+			int size() const;
+		};
+	}
+	
+	template <class T, int Dim>
+	typedef Maths::Matrix<T, Dim, 1> Vector;
+	//class Vector : public Maths::Matrix<T, Dim, 1> {};
+	
+	template <class Scalar, int Dim>
+	class Transform
 	{
+// https://eigen.tuxfamily.org/dox/classEigen_1_1Transform.html
 	public:
-		Point2Df(float x=0, float y=0): x{x}, y{y} {}
-		inline ~Point2Df() {}
-		inline float getX() const { return x;}
-		inline float getY() const { return y;}
-		inline void setX(float x) { this->x = x;}
-		inline void setY(float y) { this->y = y;}
-
-	private:
-		float x;
-		float y;
+		~Transform ();
+		Transform ();
+		void makeAffine ();
+		Transform & prescale (const Scalar &s);
+		const Maths::Matrix<Scalar, Dim, Dim> rotation () const;
+		Transform & scale (const Scalar &s);
+		void setIdentity ();
+		static const Transform Identity ();
+		const Maths::Matrix<Scalar, Dim, 1> translation () const;
+		//TranslationPart translation ();
+	};
+	
+	/*
+	%attributeref(Translation, Scalar, x);
+	%attributeref(Translation, Scalar, y);
+	%attributeref(Translation, Scalar, z);
+	*/
+	template <class Scalar, int Dim>
+	class Translation
+	{
+// https://eigen.tuxfamily.org/dox/classEigen_1_1Translation.html
+	public:
+		~Translation ();
+		Translation ();
+		//Translation (const VectorType &vector);
+		//Translation<Scalar, Dim> inverse () const;
+		//Scalar x () const;
+		Scalar & x ();
+		//Scalar y () const;
+		Scalar & y ();
+		//Scalar z () const;
+		Scalar & z ();
+	};
+	
+	template <class Scalar>
+	class Quaternion
+	{
+// https://eigen.tuxfamily.org/dox/classEigen_1_1Quaternion.html
+	public:
+// Quaternion
+		~Quaternion();
+		Quaternion ();
+		Quaternion (const Scalar &w, const Scalar &x, const Scalar &y, const Scalar &z);
+		//static Quaternion<Scalar> UnitRandom ();
+		Quaternion<Scalar> conjugate () const;
+		Quaternion< Scalar > inverse () const;
+		Scalar norm () const;
+		void normalize ();
+		Quaternion<Scalar> normalized () const;
+		Scalar squaredNorm () const;
+		//Matrix3 toRotationMatrix () const;
+		Scalar& w();
+		Scalar& x();
+		Scalar& y();
+		Scalar& z();
+// RotationBase
+		//RotationMatrixType matrix () const;
 	};
 }}
-%ignore Point2Df;
 
-namespace SolAR{namespace datastructure{
-	class Point3Df
-	{
-	public:
-		Point3Df(float x=0, float y=0, float z=0): x{x}, y{y}, z{z} {}
-		inline ~Point3Df() {}
-		inline float getX() const { return x;}
-		inline float getY() const { return y;}
-		inline float getZ() const { return z;}
-		inline void setX(float x) { this->x = x;}
-		inline void setY(float y) { this->y = y;}
-		inline void setZ(float z) { this->z = z;}
+%define MATRIX(NAME, ROWS, COLS, TYPE)
+%shared_ptr(SolAR::datastructure::Maths::Matrix<TYPE, ROWS, COLS>)
+%template(NAME) SolAR::datastructure::Maths::Matrix<TYPE, ROWS, COLS>;
+%enddef
 
-	private:
-		float x;
-		float y;
-		float z;
-	};
-}}
-%ignore Point3Df;
+MATRIX(Matrix2x1f, 2, 1, float)
+MATRIX(Matrix3x1f, 3, 1, float)
+MATRIX(Matrix2x1i, 2, 1, int)
+MATRIX(Matrix3x1i, 3, 1, int)
 
-namespace SolAR{namespace datastructure{
-	class Point2Di
-	{
-	public:
-		Point2Di(int x=0, int y=0): x{x}, y{y} {}
-		inline ~Point2Di() {}
-		inline int getX() const { return x;}
-		inline int getY() const { return y;}
-		inline void setX(int x) { this->x = x;}
-		inline void setY(int y) { this->y = y;}
+MATRIX(ProjectionMatrix, 3, 4, float)
+MATRIX(RotationMatrixf, 3, 3, float)
+MATRIX(CamCalibration, 3, 3, float)
+MATRIX(CamDistortion, 5, 1, float)
+MATRIX(PoseMatrix, 4, 4, float)
+MATRIX(Vector4Df, 4, 1, float)
+MATRIX(Vector3Df, 3, 1, float)
+MATRIX(Vector3Dd, 3, 1, double)
 
-	private:
-		int x;
-		int y;
-	};
-}}
-%ignore Point2Di;
+%define VECTOR(NAME, SIZE, TYPE)
+%shared_ptr(SolAR::datastructure::Vector<TYPE, SIZE>)
+%template(NAME) SolAR::datastructure::Vector<TYPE, SIZE>;
+%enddef
 
-namespace SolAR{namespace datastructure{
-	class Point3Di
-	{
-	public:
-		Point3Di(int x=0, int y=0, int z=0): x{x}, y{y}, z{z} {}
-		inline ~Point3Di() {}
-		inline int getX() const { return x;}
-		inline int getY() const { return y;}
-		inline int getZ() const { return z;}
-		inline void setX(int x) { this->x = x;}
-		inline void setY(int y) { this->y = y;}
-		inline void setZ(int z) { this->z = z;}
+VECTOR(Vector2Df, 2, float)
+VECTOR(Vector3Df, 3, float)
+VECTOR(Vector2Di, 2, int)
+VECTOR(Vector3Di, 3, int)
 
-	private:
-		int x;
-		int y;
-		int z;
-	};
-}}
-%ignore Point3Di;
+%define GEOMETRY(NAME, TYPE...)
+%shared_ptr(SolAR::datastructure::TYPE)
+%template(NAME) SolAR::datastructure::TYPE;
+%enddef
 
-
-
-
-
-
-
-
-// TODO
-/*
-class Vector5f
-{
-public:
-	float x;
-	float y;
-	float z;
-	float u;
-	float v;
-};
-*/
-
-/*
-namespace SolAR
-{
-    namespace datastructure
-    {
-        class SimpleCamDistortion
-        {
-        public:
-            float x;
-            float y;
-            float z;
-            float u;
-            float v;
-        };
-        
-        //%typemap(cstype) CamDistortion MyCamDistortion;
-    }
-}
-*/
-
-/*
-%typemap(csin) SolAR::datastructure::MyCamDistortion {
-    $1(0) = $input.x;
-    $1(1) = $input.y;
-    $1(2) = $input.z;
-    $1(3) = $input.u;
-    $1(4) = $input.v;
-}
-
-%typemap(csout) SolAR::datastructure::MyCamDistortion {
-    $result.x = $1(0);
-    $result.y = $1(1);
-    $result.z = $1(2);
-    $result.u = $1(3);
-    $result.v = $1(4);
-}
-*/
-
-/*
-namespace SolAR
-{
-    namespace datastructure
-    {
-        class Matrix2x2f
-        {
-        public:
-            float r1x1;
-            float r1x2;
-            float r2x1;
-            float r2x2;
-        };
-    
-        class Matrix3x3f
-        {
-        public:
-            float r1x1;
-            float r1x2;
-            float r1x3;
-            float r2x1;
-            float r2x2;
-            float r2x3;
-            float r3x1;
-            float r3x2;
-            float r3x3;
-        };
-        
-        class Matrix4x4f
-        {
-        public:
-            float r1x1;
-            float r1x2;
-            float r1x3;
-            float r1x4;
-            float r2x1;
-            float r2x2;
-            float r2x3;
-            float r2x4;
-            float r3x1;
-            float r3x2;
-            float r3x3;
-            float r3x4;
-            float r4x1;
-            float r4x2;
-            float r4x3;
-            float r4x4;
-        };
-        
-        class Vector3f
-        {
-        public:
-            float x;
-            float y;
-            float z;
-        };
-        
-        class Vector4f
-        {
-        public:
-            float x;
-            float y;
-            float z;
-            float u;
-        };
-        
-        class Vector5f
-        {
-        public:
-            float x;
-            float y;
-            float z;
-            float u;
-            float v;
-        };
-
-        using CamCalibration = Matrix3x3f;
-        using CamDistortion = Vector5f;
-        using Transform2Df = Matrix3x3f;
-        using Transform3Df = Matrix4x4f;
-        using RotationMatrixf = Matrix3x3f;
-    }
-}
-*/
-
-/* RENAME
-%rename(ProjectionMatrix) SolAR::datastructure::ProjectionMatrix;
-//%rename(RotationMatrixf) SolAR::datastructure::RotationMatrixf;
-//%rename(CamCalibration) SolAR::datastructure::CamCalibration;
-%rename(Matrix3x3) SolAR::datastructure::CamCalibration; // Fix conflict
-%rename(CamDistortion) SolAR::datastructure::CamDistortion;
-
-%rename(PoseMatrix) SolAR::datastructure::PoseMatrix;
-
-%rename(Vector4f) SolAR::datastructure::Vector4f;
-%rename(Vector3f) SolAR::datastructure::Vector3f;
-%rename(Vector3d) SolAR::datastructure::Vector3d;
-
-%rename(Transform3Df) SolAR::datastructure::Transform3Df;
-%rename(Transform2Df) SolAR::datastructure::Transform2Df;
-
-%rename(Translation3Df) SolAR::datastructure::Translation3Df;
-%rename(Translation2Df) SolAR::datastructure::Translation2Df;
-
-%rename(Quaternionf) SolAR::datastructure::Quaternionf;
-/* */
-
-/* TEMPLATE
-%template(ProjectionMatrix) SRef<SolAR::datastructure::ProjectionMatrix>;
-//%template(RotationMatrixf) SRef<SolAR::datastructure::RotationMatrixf>;
-//%template(CamCalibration) SRef<SolAR::datastructure::CamCalibration>;
-%template(Matrix3x3) SRef<SolAR::datastructure::CamCalibration>; // Fix conflict
-%template(CamDistortion) SRef<SolAR::datastructure::CamDistortion>;
-
-%template(PoseMatrix) SRef<SolAR::datastructure::PoseMatrix>;
-
-%template(Vector4f) SRef<SolAR::datastructure::Vector4f>;
-%template(Vector3f) SRef<SolAR::datastructure::Vector3f>;
-%template(Vector3d) SRef<SolAR::datastructure::Vector3d>;
-
-%template(Transform3Df) SRef<SolAR::datastructure::Transform3Df>;
-%template(Transform2Df) SRef<SolAR::datastructure::Transform2Df>;
-
-%template(Translation3Df) SRef<SolAR::datastructure::Translation3Df>;
-%template(Translation2Df) SRef<SolAR::datastructure::Translation2Df>;
-
-%template(Quaternionf) SRef<SolAR::datastructure::Quaternionf>;
-/* */
-
-/* MORE ???
-%template(BoolMatrix) SolAR::datastructure::Matrix<bool, SolAR::datastructure::Maths::Dynamic, SolAR::datastructure::Maths::Dynamic>;
-%template(FloatMatrix3x3) SolAR::datastructure::Matrix<float, 3, 3>;
-%template(FloatVector5) SolAR::datastructure::Matrix<float, 5, 1>;
-%template(Trans2D) SolAR::datastructure::Transform<float, 2>;
-%template(Trans3D) SolAR::datastructure::Transform<float, 3>;
-%template(Vec3) SolAR::datastructure::Vector<float, 3>;
-/* */
+GEOMETRY(Transform3Df, Transform<float, 3>)
+GEOMETRY(Transform2Df, Transform<float, 2>)
+GEOMETRY(Translation3Df, Translation<float, 3>)
+%ignore SolAR::datastructure::Translation<float, 2>::z();
+GEOMETRY(Translation2Df, Translation<float, 2>)
+GEOMETRY(Quaternionf, Quaternion<float>)

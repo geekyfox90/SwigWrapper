@@ -4,11 +4,10 @@
 
 %typemap(csimports) org::bcom::xpcf::IEnumerable
 %{
-    using System.Collections;
-    using System.Collections.Generic;
+	using System.Collections;
+	using System.Collections.Generic;
 %}
 
-//%typemap(csinterfaces) org::bcom::xpcf::IEnumerable %{ global::System.IDisposable, IEnumerable %}
 %extend org::bcom::xpcf::IEnumerable
 {
 	%typemap(csinterfaces) org::bcom::xpcf::IEnumerable %{global::System.IDisposable, IEnumerable<$typemap(cstype, T)>%}
@@ -18,14 +17,14 @@
 	%}
 }
 
-//%rename(GetEnumerator) org::bcom::xpcf::IEnumerable::getEnumerator;
-
 #pragma SWIG nowarn=320
 %include "xpcf/collection/IEnumerable.h"
 
 %define ENUMERABLE(NAME, TYPE)
 %shared_ptr(org::bcom::xpcf::IEnumerator<TYPE>)
+%rename(NAME ## Enumerator) org::bcom::xpcf::IEnumerator<TYPE>;
 %template(NAME ## Enumerator) org::bcom::xpcf::IEnumerator<TYPE>;
+%rename(NAME ## Enumerable) org::bcom::xpcf::IEnumerable<TYPE>;
 %template(NAME ## Enumerable) org::bcom::xpcf::IEnumerable<TYPE>;
 %enddef
 

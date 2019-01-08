@@ -21,7 +21,9 @@
 %shared_ptr(SolAR::api::solver::map::IMapper)
 %shared_ptr(SolAR::api::solver::map::ITriangulator)
 
+%rename(IntList) std::vector<int>;
 %template(IntList) std::vector<int>;
+%rename(PairUIntUInt) std::pair<unsigned int, unsigned int>;
 %template(PairUIntUInt) std::pair<unsigned int, unsigned int>;
 
 ///

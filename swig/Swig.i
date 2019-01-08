@@ -9,6 +9,7 @@
 %include "swigtype_inout.i" // support for input/output arguments
 %include "typemaps.i" // Pointer and reference handling typemap library
 %include "wchar.i" // Typemaps for the wchar_t type
+%include "attribute.i" // convert a pair of set/get methods into a "native" attribute
 
 // STD
 %include "stl.i" // Initial STL definition
@@ -40,9 +41,6 @@
 %include "boost_intrusive_ptr.i" // SWIG_INTRUSIVE_PTR_TYPEMAPS SWIG_INTRUSIVE_PTR_TYPEMAPS_NO_WRAP  
 %include "boost_shared_ptr.i" // SWIG_SHARED_PTR_TYPEMAPS 
 
-// Custom
-//%include "std_string_ref.i" //Typemaps for std::string& and const std::string&
-
 // To use non-const std::string references
 %apply const std::string & {std::string &};
 
@@ -55,16 +53,16 @@
 	try {
 		$action
 	}
+	/*
 	catch(org::bcom::xpcf::Exception& e) {
 		SWIG_exception(SWIG_RuntimeError, e.what());
 	}
 	SWIG_CATCH_STDEXCEPT // catch std::exception
-	/*
-	catch(const std::exception& e) {
-		SWIG_exception(SWIG_RuntimeError, e.what());
-	}
-	*/
 	catch (...) {
 		SWIG_exception(SWIG_UnknownError, "Unknown exception");
 	}
+	*/
+	SWIG_CATCH_UNKNOWN // catch generic exception
 }
+
+//%rename("%(camelcase)s") "";
