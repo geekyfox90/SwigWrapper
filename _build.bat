@@ -10,7 +10,7 @@ SET OUT=..\SolARUnitySamples\Assets\Standard Assets\SolARUnityPlugin\Wrapper
 
 RMDIR /S /Q "%OUT%"
 
-DEL /Q *.cxx
+::DEL /Q *.cxx
 
 SET OPTIONS=^
  -c++ ^
@@ -31,6 +31,7 @@ ECHO # %%F
 SET F=%%~nF
 SET OUTPUT=%OUT%\!F:_=\!
 MKDIR "!OUTPUT!"
+DEL /Q "!OUTPUT!\*.cs"
 CALL SWIG ^
  %OPTIONS% ^
  -namespace !F:_=.! ^

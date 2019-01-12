@@ -11,6 +11,19 @@ namespace boost {namespace uuids {class uuid{};}}
 
 %extend boost::uuids::uuid
 {
+	%proxycode
+	%{
+		public static implicit operator UUID(string uuidString)
+		{
+			return new UUID(uuidString);
+		}
+		
+		public static implicit operator string(UUID uuid)
+		{
+			return uuid.ToString();
+		}
+	%}
+
 	uuid(const char* uuidString)
 	{
 		return new boost::uuids::uuid(org::bcom::xpcf::toUUID(uuidString));

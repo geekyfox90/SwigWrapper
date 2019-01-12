@@ -1,6 +1,13 @@
 namespace Eigen {}
 namespace SolAR{namespace datastructure{
 	namespace Maths {
+		%attributeref(Matrix, int, cols);
+		%attributeref(Matrix, int, rows);
+		%attributeref(Matrix, int, size);
+		%attributeref(Matrix, int, colStride);
+		%attributeref(Matrix, int, innerStride);
+		%attributeref(Matrix, int, outerStride);
+		%attributeref(Matrix, int, rowStride);
 		template <class Scalar, int Rows, int Cols>
 		class Matrix
 		{
@@ -11,6 +18,7 @@ namespace SolAR{namespace datastructure{
 			Matrix();
 // PlainObjectBase
 			const Scalar & coeff(int rowId, int colId) const;
+			/*
 			//Scalar* data();
 // MatrixBase
 			//void adjointInPlace ();
@@ -34,6 +42,7 @@ namespace SolAR{namespace datastructure{
 			void reverseInPlace ();
 			Scalar sum() const;
 			//void transposeInPlace ();
+			*/
 // DenseCoeffsBase
 			int colStride() const;
 			int innerStride() const;
@@ -57,21 +66,21 @@ namespace SolAR{namespace datastructure{
 	public:
 		~Transform ();
 		Transform ();
+		static const Transform Identity ();
+		const Maths::Matrix<Scalar, Dim, Dim> rotation () const;
+		const Maths::Matrix<Scalar, Dim, 1> translation () const;
+		/*
+		void setIdentity ();
 		void makeAffine ();
 		Transform & prescale (const Scalar &s);
-		const Maths::Matrix<Scalar, Dim, Dim> rotation () const;
 		Transform & scale (const Scalar &s);
-		void setIdentity ();
-		static const Transform Identity ();
-		const Maths::Matrix<Scalar, Dim, 1> translation () const;
 		//TranslationPart translation ();
+		*/
 	};
 	
-	/*
 	%attributeref(Translation, Scalar, x);
 	%attributeref(Translation, Scalar, y);
 	%attributeref(Translation, Scalar, z);
-	*/
 	template <class Scalar, int Dim>
 	class Translation
 	{
@@ -89,6 +98,10 @@ namespace SolAR{namespace datastructure{
 		Scalar & z ();
 	};
 	
+	%attributeref(Quaternion, Scalar, w);
+	%attributeref(Quaternion, Scalar, x);
+	%attributeref(Quaternion, Scalar, y);
+	%attributeref(Quaternion, Scalar, z);
 	template <class Scalar>
 	class Quaternion
 	{
@@ -98,20 +111,22 @@ namespace SolAR{namespace datastructure{
 		~Quaternion();
 		Quaternion ();
 		Quaternion (const Scalar &w, const Scalar &x, const Scalar &y, const Scalar &z);
+		Scalar& w();
+		Scalar& x();
+		Scalar& y();
+		Scalar& z();
+		/*
 		//static Quaternion<Scalar> UnitRandom ();
 		Quaternion<Scalar> conjugate () const;
-		Quaternion< Scalar > inverse () const;
+		Quaternion<Scalar> inverse () const;
 		Scalar norm () const;
 		void normalize ();
 		Quaternion<Scalar> normalized () const;
 		Scalar squaredNorm () const;
 		//Matrix3 toRotationMatrix () const;
-		Scalar& w();
-		Scalar& x();
-		Scalar& y();
-		Scalar& z();
 // RotationBase
 		//RotationMatrixType matrix () const;
+		*/
 	};
 }}
 
@@ -120,27 +135,27 @@ namespace SolAR{namespace datastructure{
 %template(NAME) SolAR::datastructure::Maths::Matrix<TYPE, ROWS, COLS>;
 %enddef
 
-MATRIX(Matrix2x1f, 2, 1, float)
-MATRIX(Matrix3x1f, 3, 1, float)
-MATRIX(Matrix2x1i, 2, 1, int)
-MATRIX(Matrix3x1i, 3, 1, int)
-
+/*
 MATRIX(ProjectionMatrix, 3, 4, float)
 MATRIX(RotationMatrixf, 3, 3, float)
 MATRIX(CamCalibration, 3, 3, float)
 MATRIX(CamDistortion, 5, 1, float)
 MATRIX(PoseMatrix, 4, 4, float)
-MATRIX(Vector4Df, 4, 1, float)
-MATRIX(Vector3Df, 3, 1, float)
-MATRIX(Vector3Dd, 3, 1, double)
+*/
+
+MATRIX(Matrix2x2f, 2, 2, float)
+MATRIX(Matrix3x3f, 3, 3, float)
 
 %define VECTOR(NAME, SIZE, TYPE)
-%shared_ptr(SolAR::datastructure::Vector<TYPE, SIZE>)
+MATRIX(NAME, SIZE, 1, TYPE)
+//%shared_ptr(SolAR::datastructure::Vector<TYPE, SIZE>)
 %template(NAME) SolAR::datastructure::Vector<TYPE, SIZE>;
 %enddef
 
 VECTOR(Vector2Df, 2, float)
 VECTOR(Vector3Df, 3, float)
+VECTOR(Vector5Df, 5, float)
+
 VECTOR(Vector2Di, 2, int)
 VECTOR(Vector3Di, 3, int)
 
@@ -149,9 +164,13 @@ VECTOR(Vector3Di, 3, int)
 %template(NAME) SolAR::datastructure::TYPE;
 %enddef
 
-GEOMETRY(Transform3Df, Transform<float, 3>)
 GEOMETRY(Transform2Df, Transform<float, 2>)
-GEOMETRY(Translation3Df, Translation<float, 3>)
+GEOMETRY(Transform3Df, Transform<float, 3>)
+
+/*
 %ignore SolAR::datastructure::Translation<float, 2>::z();
 GEOMETRY(Translation2Df, Translation<float, 2>)
+GEOMETRY(Translation3Df, Translation<float, 3>)
+
 GEOMETRY(Quaternionf, Quaternion<float>)
+*/
