@@ -6,12 +6,12 @@
 
 %include "Swig.i"
 
-%import (module="XPCF") "XPCF.i"
+%import (module="XPCF.Api") "XPCF_Api.i"
 %import (module="SolAR.Core") "SolAR_Core.i"
 
-%typemap(csimports) SWIGTYPE 
+%typemap(csimports) SWIGTYPE
 %{
-    using XPCF;
+    using XPCF.Api;
     using SolAR.Core;
 %}
 

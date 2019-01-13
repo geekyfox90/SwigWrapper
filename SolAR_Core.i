@@ -8,6 +8,10 @@
 
 %include "Swig.i"
 
+%typemap(csimports) SWIGTYPE
+%{
+%}
+
 ///
 
 %rename(CharList) std::vector<char const *>;

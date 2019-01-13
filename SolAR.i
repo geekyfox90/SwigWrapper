@@ -81,7 +81,7 @@
 #include "api/solver/pose/IHomographyValidation.h"
 %}
 
-%import (module="XPCF") "XPCF.i"
+%import (module="XPCF.Core") "XPCF_Core.i"
 
 %inline %{
 template <class I>
@@ -111,9 +111,6 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 #define XPCF_DEFINE_COMPONENT_TRAITS(fullComponentType,uuidString,nameString,descriptionString)
 */
 
-%import (module="SolAR.Core")			"SolAR_Core.i"
-%import (module="SolAR.Datastructure")	"SolAR_Datastructure.i"
-
 %import (module="SolAR.Api.Display")	"SolAR_Api_Display.i"
 %import (module="SolAR.Api.Example")	"SolAR_Api_Example.i"
 %import (module="SolAR.Api.Features")	"SolAR_Api_Features.i"
@@ -128,9 +125,7 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %import (module="SolAR.Api.Solver.Pose")	"SolAR_Api_Solver_Pose.i"
 
 %pragma(csharp) moduleimports=%{
-    using XPCF;
-    using SolAR.Core;
-    using SolAR.Datastructure;
+    using XPCF.Api;
     using SolAR.Api.Display;
     using SolAR.Api.Example;
     using SolAR.Api.Features;

@@ -1,6 +1,7 @@
 namespace Eigen {}
 namespace SolAR{namespace datastructure{
 	namespace Maths {
+		/*
 		%attributeref(Matrix, int, cols);
 		%attributeref(Matrix, int, rows);
 		%attributeref(Matrix, int, size);
@@ -8,6 +9,7 @@ namespace SolAR{namespace datastructure{
 		%attributeref(Matrix, int, innerStride);
 		%attributeref(Matrix, int, outerStride);
 		%attributeref(Matrix, int, rowStride);
+		*/
 		template <class Scalar, int Rows, int Cols>
 		class Matrix
 		{

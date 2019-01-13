@@ -18,14 +18,13 @@ using namespace SolAR::datastructure;
 
 %include "Swig.i"
 
-%import (module="XPCF") "XPCF.i"
+%import (module="XPCF.Core") "XPCF_Core.i"
 %import (module="SolAR.Core") "SolAR_Core.i"
 
 %typemap(csimports) SWIGTYPE
 %{
-    using XPCF;
+    using XPCF.Core;
     using SolAR.Core;
-    using SolAR.Datastructure;
 %}
 
 ///
