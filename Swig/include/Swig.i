@@ -53,7 +53,14 @@
 	try {
 		$action
 	}
-	/*
+	SWIG_CATCH_UNKNOWN // catch generic exception
+}
+
+/*
+%exception {
+	try {
+		$action
+	}
 	catch(org::bcom::xpcf::Exception& e) {
 		SWIG_exception(SWIG_RuntimeError, e.what());
 	}
@@ -61,8 +68,7 @@
 	catch (...) {
 		SWIG_exception(SWIG_UnknownError, "Unknown exception");
 	}
-	*/
-	SWIG_CATCH_UNKNOWN // catch generic exception
 }
+*/
 
-//%rename("%(camelcase)s") "";
+//%rename("%(camelcase)s") ""; //TODO

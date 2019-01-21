@@ -31,10 +31,12 @@ SOURCES += \
 	SolAR_Api_Image_wrap.cxx \
 	SolAR_Api_Input_Devices_wrap.cxx \
 	SolAR_Api_Input_Files_wrap.cxx \
+	SolAR_Api_Pipeline_wrap.cxx \
 	SolAR_Api_Reloc_wrap.cxx \
 	SolAR_Api_Sink_wrap.cxx \
 	SolAR_Api_Solver_Map_wrap.cxx \
 	SolAR_Api_Solver_Pose_wrap.cxx \
+	SolAR_Api_Source_wrap.cxx \
 	SolAR_Core_wrap.cxx \
 	SolAR_Datastructure_wrap.cxx \
 	SolAR_wrap.cxx \
@@ -50,7 +52,7 @@ SOURCES += \
 HEADERS += \
 
 INCLUDEPATH += \
-    ../../SolARFramework/0.5.0/interfaces \
+    ../../SolARFramework/0.5.1/interfaces \
     ../../SolARModuleTools/0.4.0/interfaces \
     ../../../thirdParties/xpcf/2.1.0/interfaces \
     ../../../thirdParties/eigen/3.3.5/interfaces \
@@ -58,7 +60,7 @@ INCLUDEPATH += \
     ../../../thirdParties/spdlog/0.14.0/interfaces \
 
 LIBS += \
-    -L../../SolARFramework/0.5.0/lib/x86_64/shared/debug \
+    -L../../SolARFramework/0.5.1/lib/x86_64/shared/debug \
     -L../../SolARModuleTools/0.4.0/lib/x86_64/shared/debug \
     -L../../../thirdParties/xpcf/2.1.0/lib/x86_64/shared/debug \
     -L../../../thirdParties/boost/1.68.0/lib/x86_64/shared/debug \

@@ -20,7 +20,7 @@ SET OPTIONS=^
  -ISwig ^
  -ISwig/include ^
  -I%BCOMDEVROOT%/thirdParties/xpcf/2.1.0/interfaces ^
- -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.0/interfaces ^
+ -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.1/interfaces ^
  -dllimport SolARWrapper ^
  
 

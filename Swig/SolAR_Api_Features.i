@@ -38,7 +38,7 @@
 
 ///
 
-%rename(DescriptorMatcherRetCode) SolAR::api::features::DescriptorMatcher::RetCode;
+//%rename(DescriptorMatcherRetCode) SolAR::api::features::DescriptorMatcher::RetCode;
 %include "api/features/IDescriptorMatcher.h"
 
 %include "api/features/IDescriptorsExtractor.h"

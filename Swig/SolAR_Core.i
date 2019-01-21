@@ -19,7 +19,7 @@
 
 ///
 
-%ignore SolAR::getSolARFrameworkVersion(); //TODO
+%ignore SolAR::getSolARFrameworkVersion(); //TODO Missing implementation
 %include "core/SolARFramework.h"
 
 %include "core/SolARFrameworkDefinitions.h"

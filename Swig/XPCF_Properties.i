@@ -25,6 +25,7 @@
 %include "xpcf/properties/IProperty.h"
 
 //%include "xpcf/properties/IProperty.i"
+//TODO
 /*
 %apply bool & INOUT { bool & wrappedValue };
 %apply signed char & INOUT { signed char & wrappedValue };

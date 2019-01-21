@@ -11,10 +11,12 @@ set (SOURCES
 	SolAR_Api_Image_wrap.cxx
 	SolAR_Api_Input_Devices_wrap.cxx
 	SolAR_Api_Input_Files_wrap.cxx
+	SolAR_Api_Pipeline_wrap.cxx
 	SolAR_Api_Reloc_wrap.cxx
 	SolAR_Api_Sink_wrap.cxx
 	SolAR_Api_Solver_Map_wrap.cxx
 	SolAR_Api_Solver_Pose_wrap.cxx
+	SolAR_Api_Source_wrap.cxx
 	SolAR_Core_wrap.cxx
 	SolAR_Datastructure_wrap.cxx
 	SolAR_wrap.cxx

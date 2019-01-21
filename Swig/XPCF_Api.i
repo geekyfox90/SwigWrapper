@@ -52,7 +52,7 @@ namespace boost{namespace filesystem{}}
 %include "xpcf/api/ComponentMetadata.h"
 
 //%include "xpcf/api/ComponentMetadata.i"
-%ignore org::bcom::xpcf::IModuleIndex; //TODO
+%ignore org::bcom::xpcf::IModuleIndex; //TODO Multiple inheritance
 //%interface_impl(org::bcom::xpcf::IModuleIndex);
 //%shared_ptr(org::bcom::xpcf::IModuleIndex)
 //TODO: Change constructor, and add 4 methods

@@ -61,10 +61,14 @@
 #include "api/input/files/IMarker2DSquared.h"
 #include "api/input/files/IMarker2DSquaredBinary.h"
 
+#include "api/pipeline/IPipeline.h"
+
 #include "api/reloc/IKeyframeRetriever.h"
 #include "api/reloc/IRelocalizer.h"
 
-#include "api/sink/IThirdPartyConnector.h"
+#include "api/sink/ISinkPoseImage.h"
+#include "api/sink/ISinkPoseTextureBuffer.h"
+#include "api/sink/ISinkReturnCode.h"
 
 #include "api/solver/map/IBundler.h"
 #include "api/solver/map/IKeyframeSelector.h"
@@ -79,6 +83,9 @@
 #include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
 #include "api/solver/pose/IHomographyValidation.h"
+
+#include "api/source/ISourceImage.h"
+#include "api/source/ISourceReturnCode.h"
 %}
 
 %import (module="XPCF.Core") "XPCF_Core.i"
@@ -119,10 +126,12 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %import (module="SolAR.Api.Image")		"SolAR_Api_Image.i"
 %import (module="SolAR.Api.Input.Devices")	"SolAR_Api_Input_Devices.i"
 %import (module="SolAR.Api.Input.Files")	"SolAR_Api_Input_Files.i"
+%import (module="SolAR.Api.Pipeline")	"SolAR_Api_Pipeline.i"
 %import (module="SolAR.Api.Reloc")		"SolAR_Api_Reloc.i"
 %import (module="SolAR.Api.Sink")		"SolAR_Api_Sink.i"
 %import (module="SolAR.Api.Solver.Map")	"SolAR_Api_Solver_Map.i"
 %import (module="SolAR.Api.Solver.Pose")	"SolAR_Api_Solver_Pose.i"
+%import (module="SolAR.Api.Source")	"SolAR_Api_Source.i"
 
 %pragma(csharp) moduleimports=%{
     using XPCF.Api;
@@ -134,10 +143,12 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
     using SolAR.Api.Image;
     using SolAR.Api.Input.Devices;
     using SolAR.Api.Input.Files;
+    using SolAR.Api.Pipeline;
     using SolAR.Api.Reloc;
     using SolAR.Api.Sink;
     using SolAR.Api.Solver.Map;
     using SolAR.Api.Solver.Pose;
+    using SolAR.Api.Source;
 %}
 
 //*
@@ -182,10 +193,13 @@ BIND_TO_INTERFACE(IMarker2DNaturalImage,	SolAR::api::input::files::IMarker2DNatu
 BIND_TO_INTERFACE(IMarker2DSquared,			SolAR::api::input::files::IMarker2DSquared)
 BIND_TO_INTERFACE(IMarker2DSquaredBinary,	SolAR::api::input::files::IMarker2DSquaredBinary)
 
+BIND_TO_INTERFACE(IPipeline,	SolAR::api::pipeline::IPipeline)
+
 BIND_TO_INTERFACE(IKeyframeRetriever,	SolAR::api::reloc::IKeyframeRetriever)
 BIND_TO_INTERFACE(IRelocalizer,			SolAR::api::reloc::IRelocalizer)
 
-BIND_TO_INTERFACE(IThirdPartyConnector,	SolAR::api::sink::IThirdPartyConnector)
+BIND_TO_INTERFACE(ISinkPoseImage,	SolAR::api::sink::ISinkPoseImage)
+BIND_TO_INTERFACE(ISinkPoseTextureBuffer,	SolAR::api::sink::ISinkPoseTextureBuffer)
 
 BIND_TO_INTERFACE(IBundler,				SolAR::api::solver::map::IBundler)
 BIND_TO_INTERFACE(IKeyframeSelector,	SolAR::api::solver::map::IKeyframeSelector)
@@ -200,4 +214,6 @@ BIND_TO_INTERFACE(I2DTransformFinder,			SolAR::api::solver::pose::I2DTransformFi
 BIND_TO_INTERFACE(I3DTransformFinderFrom2D2D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
 BIND_TO_INTERFACE(I3DTransformFinderFrom2D3D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
 BIND_TO_INTERFACE(IHomographyValidation,		SolAR::api::solver::pose::IHomographyValidation)
+
+BIND_TO_INTERFACE(ISourceImage,		SolAR::api::source::ISourceImage)
 /* */

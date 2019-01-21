@@ -1,5 +1,7 @@
 %module solar_api_fusion
 %{
+#include "core/Log.h" //TODO
+
 #include "api/fusion/IVisualInertialFusion.h"
 %}
 
