@@ -22,16 +22,13 @@ SET OPTIONS=^
  -dllimport SolARWrapper ^
  
 
-:: -Iswig/SolARFramework ^
- 
-
 FOR %%F IN (*.i) DO (
 ECHO ##########
 ECHO # %%F
 SET F=%%~nF
 SET OUTPUT=%OUT%\!F:_=\!
 DEL /Q "!OUTPUT!\*.cs"
-MKDIR "!OUTPUT!"
+IF NOT EXIST "!OUTPUT!" MKDIR "!OUTPUT!"
 CALL SWIG ^
  %OPTIONS% ^
  -namespace !F:_=.! ^

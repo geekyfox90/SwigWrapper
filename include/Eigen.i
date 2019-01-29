@@ -44,12 +44,12 @@ namespace SolAR{namespace datastructure{
 			void reverseInPlace ();
 			Scalar sum() const;
 			//void transposeInPlace ();
-			*/
 // DenseCoeffsBase
 			int colStride() const;
 			int innerStride() const;
 			int outerStride() const;
 			int rowStride() const;
+			*/
 // EigenBase
 			int cols() const;
 			int rows() const;

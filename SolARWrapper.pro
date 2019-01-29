@@ -23,38 +23,45 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-	xpcf_wrap.cxx \
-	solar_wrap.cxx \
-	solar_core_wrap.cxx \
-	solar_datastructure_wrap.cxx \
-	solar_api_display_wrap.cxx \
-	solar_api_example_wrap.cxx \
-	solar_api_features_wrap.cxx \
-	solar_api_fusion_wrap.cxx \
-	solar_api_geom_wrap.cxx \
-	solar_api_image_wrap.cxx \
-	solar_api_input_devices_wrap.cxx \
-	solar_api_input_files_wrap.cxx \
-	solar_api_reloc_wrap.cxx \
-	solar_api_sink_wrap.cxx \
-	solar_api_solver_map_wrap.cxx \
-	solar_api_solver_pose_wrap.cxx \
+	SolAR_Api_Display_wrap.cxx \
+	SolAR_Api_Example_wrap.cxx \
+	SolAR_Api_Features_wrap.cxx \
+	SolAR_Api_Fusion_wrap.cxx \
+	SolAR_Api_Geom_wrap.cxx \
+	SolAR_Api_Image_wrap.cxx \
+	SolAR_Api_Input_Devices_wrap.cxx \
+	SolAR_Api_Input_Files_wrap.cxx \
+	SolAR_Api_Reloc_wrap.cxx \
+	SolAR_Api_Sink_wrap.cxx \
+	SolAR_Api_Solver_Map_wrap.cxx \
+	SolAR_Api_Solver_Pose_wrap.cxx \
+	SolAR_Core_wrap.cxx \
+	SolAR_Datastructure_wrap.cxx \
+	SolAR_wrap.cxx \
+	XPCF_Api_wrap.cxx \
+	XPCF_Collection_wrap.cxx \
+	XPCF_Component_wrap.cxx \
+	XPCF_Core_wrap.cxx \
+	XPCF_Module_wrap.cxx \
+	XPCF_Properties_wrap.cxx \
+	XPCF_Threading_wrap.cxx \
+	XPCF_Traits_wrap.cxx \
 
 HEADERS += \
 
 INCLUDEPATH += \
-    ../../SolARFramework/0.4.0/interfaces \
+    ../../SolARFramework/0.5.0/interfaces \
     ../../SolARModuleTools/0.4.0/interfaces \
-    ../../../thirdParties/xpcf/1.0.0/interfaces \
-    ../../../thirdParties/eigen/3.3.4/interfaces \
-    ../../../thirdParties/boost/1.64.0/interfaces \
+    ../../../thirdParties/xpcf/2.1.0/interfaces \
+    ../../../thirdParties/eigen/3.3.5/interfaces \
+    ../../../thirdParties/boost/1.68.0/interfaces \
     ../../../thirdParties/spdlog/0.14.0/interfaces \
 
 LIBS += \
-    -L../../SolARFramework/0.4.0/lib/x86_64/shared/debug \
+    -L../../SolARFramework/0.5.0/lib/x86_64/shared/debug \
     -L../../SolARModuleTools/0.4.0/lib/x86_64/shared/debug \
-    -L../../../thirdParties/xpcf/1.0.0/lib/x86_64/shared/debug \
-    -L../../../thirdParties/boost/1.64.0/lib/x86_64/shared/debug \
+    -L../../../thirdParties/xpcf/2.1.0/lib/x86_64/shared/debug \
+    -L../../../thirdParties/boost/1.68.0/lib/x86_64/shared/debug \
     -lSolARFramework \
     -lSolARModuleTools \
     -lxpcf \
