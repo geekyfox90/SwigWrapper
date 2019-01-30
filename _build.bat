@@ -5,8 +5,8 @@ setlocal ENABLEDELAYEDEXPANSION
 
 PUSHD %~dp0
 
-::SET OUT=out\csharp
-SET OUT=..\SolARUnitySamples\Assets\Standard Assets\SolARUnityPlugin\Wrapper
+SET OUT=out\csharp
+::SET OUT=..\SolARUnitySamples\Assets\Standard Assets\SolARUnityPlugin\Wrapper
 
 ::RMDIR /S /Q "%OUT%"
 
@@ -16,13 +16,15 @@ SET OPTIONS=^
  -c++ ^
  -csharp ^
  -small -O ^
- -Iinclude ^
+ -outcurrentdir ^
+ -ISwig ^
+ -ISwig/include ^
  -I%BCOMDEVROOT%/thirdParties/xpcf/2.1.0/interfaces ^
  -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.0/interfaces ^
  -dllimport SolARWrapper ^
  
 
-FOR %%F IN (*.i) DO (
+FOR %%F IN (Swig\*.i) DO (
 ECHO ##########
 ECHO # %%F
 SET F=%%~nF
