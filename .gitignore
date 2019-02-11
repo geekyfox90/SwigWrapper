@@ -2,3 +2,7 @@
 /*.cxx
 /*.user
 /out/
+/*.xml
+/Swig/*.cpp
+/build
+/Swig/*.py

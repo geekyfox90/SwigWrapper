@@ -37,6 +37,8 @@
 %rename(MoveNext) org::bcom::xpcf::IEnumerator::moveNext();
 %rename(Reset) org::bcom::xpcf::IEnumerator::reset();
 %ignore org::bcom::xpcf::IEnumerator::operator==;
+%ignore org::bcom::xpcf::Iterator::operator=;
+%ignore org::bcom::xpcf::Iterator::operator++;
 %include "xpcf/collection/IEnumerator.h"
 
 //%include "xpcf/collection/IEnumerator.i"
