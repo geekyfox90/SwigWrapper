@@ -46,6 +46,7 @@
 #include "api/geom/I2DTransform.h"
 #include "api/geom/I3DTransform.h"
 #include "api/geom/IImage2WorldMapper.h"
+#include "api/geom/IUndistortPoints.h"
 
 #include "api/image/IImageConvertor.h"
 #include "api/image/IImageFilter.h"
@@ -82,6 +83,7 @@
 #include "api/solver/pose/I2DTransformFinder.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
+#include "api/solver/pose/I3DTransformSACFinderFrom2D3D.h"
 #include "api/solver/pose/IHomographyValidation.h"
 
 #include "api/source/ISourceImage.h"
@@ -131,7 +133,7 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %import (module="SolAR.Api.Sink")		"SolAR_Api_Sink.i"
 %import (module="SolAR.Api.Solver.Map")	"SolAR_Api_Solver_Map.i"
 %import (module="SolAR.Api.Solver.Pose")	"SolAR_Api_Solver_Pose.i"
-%import (module="SolAR.Api.Source")	"SolAR_Api_Source.i"
+%import (module="SolAR.Api.Source")		"SolAR_Api_Source.i"
 
 %pragma(csharp) moduleimports=%{
     using XPCF.Api;
@@ -178,6 +180,7 @@ BIND_TO_INTERFACE(IVisualInertialFusion,	SolAR::api::fusion::IVisualInertialFusi
 BIND_TO_INTERFACE(I2DTransform,			SolAR::api::geom::I2DTransform)
 BIND_TO_INTERFACE(I3DTransform,			SolAR::api::geom::I3DTransform)
 BIND_TO_INTERFACE(IImage2WorldMapper,	SolAR::api::geom::IImage2WorldMapper)
+BIND_TO_INTERFACE(IUndistortPoints,	SolAR::api::geom::IUndistortPoints)
 
 BIND_TO_INTERFACE(IImageConvertor,			SolAR::api::image::IImageConvertor)
 BIND_TO_INTERFACE(IImageFilter,				SolAR::api::image::IImageFilter)
@@ -213,6 +216,7 @@ BIND_TO_INTERFACE(I2Dto3DTransformDecomposer,	SolAR::api::solver::pose::I2Dto3DT
 BIND_TO_INTERFACE(I2DTransformFinder,			SolAR::api::solver::pose::I2DTransformFinder)
 BIND_TO_INTERFACE(I3DTransformFinderFrom2D2D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
 BIND_TO_INTERFACE(I3DTransformFinderFrom2D3D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
+BIND_TO_INTERFACE(I3DTransformSACFinderFrom2D3D,	SolAR::api::solver::pose::I3DTransformSACFinderFrom2D3D)
 BIND_TO_INTERFACE(IHomographyValidation,		SolAR::api::solver::pose::IHomographyValidation)
 
 BIND_TO_INTERFACE(ISourceImage,		SolAR::api::source::ISourceImage)

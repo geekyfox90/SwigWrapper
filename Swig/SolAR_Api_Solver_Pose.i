@@ -6,6 +6,7 @@
 #include "api/solver/pose/I2DTransformFinder.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
+#include "api/solver/pose/I3DTransformSACFinderFrom2D3D.h"
 #include "api/solver/pose/IHomographyValidation.h"
 %}
 
@@ -30,6 +31,7 @@
 %shared_ptr(SolAR::api::solver::pose::I2DTransformFinder)
 %shared_ptr(SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
 %shared_ptr(SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
+%shared_ptr(SolAR::api::solver::pose::I3DTransformSACFinderFrom2D3D)
 %shared_ptr(SolAR::api::solver::pose::IHomographyValidation)
 
 ///
@@ -45,5 +47,7 @@
 %include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 
 %include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
+
+%include "api/solver/pose/I3DTransformSACFinderFrom2D3D.h"
 
 %include "api/solver/pose/IHomographyValidation.h"

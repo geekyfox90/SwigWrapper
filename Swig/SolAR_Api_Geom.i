@@ -3,6 +3,7 @@
 #include "api/geom/I2DTransform.h"
 #include "api/geom/I3DTransform.h"
 #include "api/geom/IImage2WorldMapper.h"
+#include "api/geom/IUndistortPoints.h"
 %}
 
 %include "Swig.i"
@@ -23,6 +24,7 @@
 %shared_ptr(SolAR::api::geom::I2DTransform)
 %shared_ptr(SolAR::api::geom::I3DTransform)
 %shared_ptr(SolAR::api::geom::IImage2WorldMapper)
+%shared_ptr(SolAR::api::geom::IUndistortPoints)
 
 ///
 
@@ -31,3 +33,5 @@
 %include "api/geom/I3DTransform.h"
 
 %include "api/geom/IImage2WorldMapper.h"
+
+%include "api/geom/IUndistortPoints.h"
