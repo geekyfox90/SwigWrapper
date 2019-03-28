@@ -88,6 +88,7 @@ using namespace SolAR::datastructure;
 
 %include "Eigen.i"
 
+//%ignore SolAR::datastructure::Matrix;
 %ignore SolAR::datastructure::Vector;
 //%ignore SolAR::datastructure::Vector4f;
 %ignore SolAR::datastructure::Vector3f;

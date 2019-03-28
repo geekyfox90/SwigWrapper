@@ -10,7 +10,7 @@ namespace SolAR{namespace datastructure{
 		%attributeref(Matrix, int, outerStride);
 		%attributeref(Matrix, int, rowStride);
 		*/
-		template <class Scalar, int Rows, int Cols, int ColOrRowMajor = Eigen::RowMajor>
+		template <class Scalar, int Rows, int Cols, int Options = Eigen::ColMajor>
 		class Matrix
 		{
 // https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html
@@ -56,11 +56,14 @@ namespace SolAR{namespace datastructure{
 			int size() const;
 		};
 		
-		template <class T, int Rows>
-		typedef Matrix<T, Dim, 1> Vector;
+		//template <class T, int Rows, int Options = Eigen::ColMajor>
+		//typedef Matrix<T, Dim, 1, Options> Vector;
 		
 		//typedef Matrix<float, 3, 1> Vector3f;
 	}
+	
+	//template <class T, int Rows, int Cols, int Options = Eigen::RowMajor>
+	//typedef Maths::Matrix<T, Rows, Cols, Eigen::RowMajor> Matrix; //TODO Options
 	
 	template <class T, int Dim>
 	typedef Maths::Matrix<T, Dim, 1> Vector;
@@ -75,7 +78,7 @@ namespace SolAR{namespace datastructure{
 		~Transform ();
 		Transform ();
 		static const Transform Identity ();
-		const Maths::Matrix<Scalar, Dim, Dim> rotation () const;
+		const Maths::Matrix<Scalar, Dim, Dim, Eigen::RowMajor> rotation () const;
 		const Maths::Matrix<Scalar, Dim, 1> translation () const;
 		/*
 		void setIdentity ();
@@ -143,31 +146,16 @@ namespace SolAR{namespace datastructure{
 %template(NAME) SolAR::datastructure::TYPE;
 %enddef
 
-DATASTRUCT(Transform2Df, Transform<float, 2>)
-DATASTRUCT(Transform3Df, Transform<float, 3>)
-
-/*
-%ignore SolAR::datastructure::Translation<float, 2>::z();
-DATASTRUCT(Translation2Df, Translation<float, 2>)
-DATASTRUCT(Translation3Df, Translation<float, 3>)
-
-DATASTRUCT(Quaternionf, Quaternion<float>)
-*/
-
-%define MATRIX(NAME, ROWS, COLS, TYPE)
-DATASTRUCT(NAME, Maths::Matrix<TYPE, ROWS, COLS>)
+%define EIGEN(NAME, TYPE...)
+DATASTRUCT(NAME, Maths::TYPE)
 %enddef
 
-/*
-MATRIX(ProjectionMatrix, 3, 4, float)
-MATRIX(RotationMatrixf, 3, 3, float)
-MATRIX(CamCalibration, 3, 3, float)
-MATRIX(CamDistortion, 5, 1, float)
-MATRIX(PoseMatrix, 4, 4, float)
-*/
+%define MATRIX(NAME, ROWS, COLS, TYPE)
+EIGEN(NAME, Matrix<TYPE, ROWS, COLS>)
+%enddef
 
-MATRIX(Matrix2x2f, 2, 2, float)
-MATRIX(Matrix3x3f, 3, 3, float)
+EIGEN(Matrix2x2f, Matrix<float, 2, 2, Eigen::RowMajor>)
+EIGEN(Matrix3x3f, Matrix<float, 3, 3, Eigen::RowMajor>)
 
 %define VECTOR(NAME, SIZE, TYPE)
 MATRIX(NAME, SIZE, 1, TYPE)
@@ -181,3 +169,18 @@ VECTOR(Vector5f, 5, float)
 
 VECTOR(Vector2i, 2, int)
 VECTOR(Vector3i, 3, int)
+
+%define TRANSFORM(NAME, SIZE, TYPE)
+DATASTRUCT(NAME, Transform<TYPE, SIZE>)
+%enddef
+
+TRANSFORM(Transform2Df, 2, float)
+TRANSFORM(Transform3Df, 3, float)
+
+/*
+%ignore SolAR::datastructure::Translation<float, 2>::z();
+DATASTRUCT(Translation2Df, Translation<float, 2>)
+DATASTRUCT(Translation3Df, Translation<float, 3>)
+
+DATASTRUCT(Quaternionf, Quaternion<float>)
+*/
