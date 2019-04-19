@@ -37,6 +37,7 @@
 #include "api/features/IDescriptorsExtractor.h"
 #include "api/features/IDescriptorsExtractorSBPattern.h"
 #include "api/features/IKeypointDetector.h"
+#include "api/features/IKeypointDetectorRegion.h"
 #include "api/features/IKeypointsReIndexer.h"
 #include "api/features/IMatchesFilter.h"
 #include "api/features/ISBPatternReIndexer.h"
@@ -44,6 +45,8 @@
 #include "api/fusion/IVisualInertialFusion.h"
 
 #include "api/geom/I2DTransform.h"
+#include "api/geom/IProject.h"
+#include "api/geom/IUnproject.h"
 #include "api/geom/I3DTransform.h"
 #include "api/geom/IImage2WorldMapper.h"
 #include "api/geom/IUndistortPoints.h"
@@ -88,6 +91,8 @@
 
 #include "api/source/ISourceImage.h"
 #include "api/source/ISourceReturnCode.h"
+
+#include "api/tracking/IOpticalFlowEstimator.h"
 %}
 
 %import (module="XPCF.Core") "XPCF_Core.i"
@@ -134,6 +139,7 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %import (module="SolAR.Api.Solver.Map")	"SolAR_Api_Solver_Map.i"
 %import (module="SolAR.Api.Solver.Pose")	"SolAR_Api_Solver_Pose.i"
 %import (module="SolAR.Api.Source")		"SolAR_Api_Source.i"
+%import (module="SolAR.Api.Tracking")		"SolAR_Api_Tracking.i"
 
 %pragma(csharp) moduleimports=%{
     using XPCF.Api;
@@ -151,6 +157,7 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
     using SolAR.Api.Solver.Map;
     using SolAR.Api.Solver.Pose;
     using SolAR.Api.Source;
+	using SolAR.Api.Tracking;
 %}
 
 //*
@@ -171,6 +178,7 @@ BIND_TO_INTERFACE(IDescriptorMatcher,		SolAR::api::features::IDescriptorMatcher)
 BIND_TO_INTERFACE(IDescriptorsExtractor,	SolAR::api::features::IDescriptorsExtractor)
 BIND_TO_INTERFACE(IDescriptorsExtractorSBPattern,	SolAR::api::features::IDescriptorsExtractorSBPattern)
 BIND_TO_INTERFACE(IKeypointDetector,		SolAR::api::features::IKeypointDetector)
+BIND_TO_INTERFACE(IKeypointDetectorRegion,		SolAR::api::features::IKeypointDetectorRegion)
 BIND_TO_INTERFACE(IKeypointsReIndexer,		SolAR::api::features::IKeypointsReIndexer)
 BIND_TO_INTERFACE(IMatchesFilter,			SolAR::api::features::IMatchesFilter)
 BIND_TO_INTERFACE(ISBPatternReIndexer,		SolAR::api::features::ISBPatternReIndexer)
@@ -178,6 +186,8 @@ BIND_TO_INTERFACE(ISBPatternReIndexer,		SolAR::api::features::ISBPatternReIndexe
 BIND_TO_INTERFACE(IVisualInertialFusion,	SolAR::api::fusion::IVisualInertialFusion)
 
 BIND_TO_INTERFACE(I2DTransform,			SolAR::api::geom::I2DTransform)
+BIND_TO_INTERFACE(IProject,			SolAR::api::geom::IProject)
+BIND_TO_INTERFACE(IUnproject,			SolAR::api::geom::IUnproject)
 BIND_TO_INTERFACE(I3DTransform,			SolAR::api::geom::I3DTransform)
 BIND_TO_INTERFACE(IImage2WorldMapper,	SolAR::api::geom::IImage2WorldMapper)
 BIND_TO_INTERFACE(IUndistortPoints,	SolAR::api::geom::IUndistortPoints)
@@ -220,4 +230,6 @@ BIND_TO_INTERFACE(I3DTransformSACFinderFrom2D3D,	SolAR::api::solver::pose::I3DTr
 BIND_TO_INTERFACE(IHomographyValidation,		SolAR::api::solver::pose::IHomographyValidation)
 
 BIND_TO_INTERFACE(ISourceImage,		SolAR::api::source::ISourceImage)
+BIND_TO_INTERFACE(IOpticalFlowEstimator,		SolAR::api::tracking::IOpticalFlowEstimator)
+
 /* */
