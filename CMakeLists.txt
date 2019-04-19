@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.7.2)
 ##################################################
 project("SolARWrapper")
 set (SOURCES 
+	SolAR_Api_Tracking_wrap.cxx
 	SolAR_Api_Display_wrap.cxx
 	SolAR_Api_Example_wrap.cxx
 	SolAR_Api_Features_wrap.cxx

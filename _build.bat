@@ -24,7 +24,7 @@ SET OPTIONS=^
  -I./Swig ^
  -I./Swig/include ^
  -I%BCOMDEVROOT%/thirdParties/xpcf/2.1.0/interfaces ^
- -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.1/interfaces ^
+ -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.2/interfaces ^
  -dllimport SolARWrapper ^
  
 

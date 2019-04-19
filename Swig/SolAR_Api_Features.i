@@ -6,6 +6,7 @@
 #include "api/features/IDescriptorsExtractor.h"
 #include "api/features/IDescriptorsExtractorSBPattern.h"
 #include "api/features/IKeypointDetector.h"
+#include "api/features/IKeypointDetectorRegion.h"
 #include "api/features/IKeypointsReIndexer.h"
 #include "api/features/IMatchesFilter.h"
 #include "api/features/ISBPatternReIndexer.h"
@@ -32,6 +33,7 @@
 %shared_ptr(SolAR::api::features::IDescriptorsExtractor)
 %shared_ptr(SolAR::api::features::IDescriptorsExtractorSBPattern)
 %shared_ptr(SolAR::api::features::IKeypointDetector)
+%shared_ptr(SolAR::api::features::IKeypointDetectorRegion)
 %shared_ptr(SolAR::api::features::IKeypointsReIndexer)
 %shared_ptr(SolAR::api::features::IMatchesFilter)
 %shared_ptr(SolAR::api::features::ISBPatternReIndexer)
@@ -49,6 +51,8 @@
 %include "api/features/IDescriptorsExtractorSBPattern.h"
 
 %include "api/features/IKeypointDetector.h"
+
+%include "api/features/IKeypointDetectorRegion.h"
 
 %include "api/features/IKeypointsReIndexer.h"
 

@@ -1,6 +1,8 @@
 %module solar_api_geom
 %{
 #include "api/geom/I2DTransform.h"
+#include "api/geom/IProject.h"
+#include "api/geom/IUnproject.h"
 #include "api/geom/I3DTransform.h"
 #include "api/geom/IImage2WorldMapper.h"
 #include "api/geom/IUndistortPoints.h"
@@ -22,6 +24,8 @@
 ///
 
 %shared_ptr(SolAR::api::geom::I2DTransform)
+%shared_ptr(SolAR::api::geom::IProject)
+%shared_ptr(SolAR::api::geom::IUnproject)
 %shared_ptr(SolAR::api::geom::I3DTransform)
 %shared_ptr(SolAR::api::geom::IImage2WorldMapper)
 %shared_ptr(SolAR::api::geom::IUndistortPoints)
@@ -29,6 +33,10 @@
 ///
 
 %include "api/geom/I2DTransform.h"
+
+%include "api/geom/IProject.h"
+
+%include "api/geom/IUnproject.h"
 
 %include "api/geom/I3DTransform.h"
 

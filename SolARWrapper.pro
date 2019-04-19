@@ -52,16 +52,16 @@ SOURCES += \
 HEADERS += \
 
 INCLUDEPATH += \
-    ../../SolARFramework/0.5.1/interfaces \
-    ../../SolARModuleTools/0.4.0/interfaces \
+    ../../SolARFramework/0.5.2/interfaces \
+    ../../SolARModuleTools/0.5.2/interfaces \
     ../../../thirdParties/xpcf/2.1.0/interfaces \
     ../../../thirdParties/eigen/3.3.5/interfaces \
     ../../../thirdParties/boost/1.68.0/interfaces \
     ../../../thirdParties/spdlog/0.14.0/interfaces \
 
 LIBS += \
-    -L../../SolARFramework/0.5.1/lib/x86_64/shared/debug \
-    -L../../SolARModuleTools/0.4.0/lib/x86_64/shared/debug \
+    -L../../SolARFramework/0.5.2/lib/x86_64/shared/debug \
+    -L../../SolARModuleTools/0.5.2/lib/x86_64/shared/debug \
     -L../../../thirdParties/xpcf/2.1.0/lib/x86_64/shared/debug \
     -L../../../thirdParties/boost/1.68.0/lib/x86_64/shared/debug \
     -lSolARFramework \
