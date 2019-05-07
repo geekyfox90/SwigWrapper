@@ -1,6 +1,6 @@
 %module solar_datastructure
 %{
-//#include "datastructure/BufferInternal.hpp" //TODO: missing #once guard
+//#include "datastructure/BufferInternal.hpp" //TODO: Does not include its own dependencies
 #include "datastructure/CloudPoint.h"
 #include "datastructure/DescriptorBuffer.h"
 #include "datastructure/DescriptorMatch.h"
@@ -58,8 +58,8 @@ using namespace SolAR::datastructure;
 //SWIG_STD_VECTOR_ENHANCED(SolAR::datastructure::Transform3Df)
 //%rename(Transform3DfList) std::vector<SolAR::datastructure::Transform3Df>;
 //%template(Transform3DfList) std::vector<SolAR::datastructure::Transform3Df>;
-%rename(Transform3DfList) std::vector<SolAR::datastructure::Transform<float,3>>;
-%template(Transform3DfList) std::vector<SolAR::datastructure::Transform<float,3>>;
+%rename(Transform3DfList) std::vector<Eigen::Transform<float,3,Eigen::Projective, Eigen::RowMajor>>;
+%template(Transform3DfList) std::vector<Eigen::Transform<float,3,Eigen::Projective, Eigen::RowMajor>>;
 //SWIG_STD_VECTOR_ENHANCED(SolAR::datastructure::Point2Df)
 %rename(Point2DfArray) std::vector<SolAR::datastructure::Point2Df>;
 %template(Point2DfArray) std::vector<SolAR::datastructure::Point2Df>;
@@ -87,16 +87,11 @@ using namespace SolAR::datastructure;
 ///
 
 %include "Eigen.i"
-
-//%ignore SolAR::datastructure::Matrix;
-%ignore SolAR::datastructure::Vector;
-//%ignore SolAR::datastructure::Vector4f;
-%ignore SolAR::datastructure::Vector3f;
-//%ignore SolAR::datastructure::Vector3d;
 %include "datastructure/MathDefinitions.h"
+%include "MathDefinitions.i"
 
 //%include "datastructure/MathDefinitions.i"
-%rename("$ignore", regextarget=1, fullname=1) "SolAR::datastructure::Point.D.::operator.(.*)";
+%rename("$ignore", regextarget=1, fullname=1) "SolAR::datastructure::Point.D.::operator.*$";
 %include "datastructure/GeometryDefinitions.h"
 
 %ignore SolAR::datastructure::BufferInternal::data() const;

@@ -24,6 +24,7 @@
 %template(UCharList) std::vector<unsigned char>;
 %rename(FloatList) std::vector<float>;
 %template(FloatList) std::vector<float>;
+
 ///
 
 %include "api/tracking/IOpticalFlowEstimator.h"

@@ -55,7 +55,6 @@ namespace boost{namespace filesystem{}}
 %ignore org::bcom::xpcf::IModuleIndex; //TODO Multiple inheritance
 //%interface_impl(org::bcom::xpcf::IModuleIndex);
 //%shared_ptr(org::bcom::xpcf::IModuleIndex)
-//TODO: Change constructor, and add 4 methods
 %include "xpcf/module/IModuleIndex.h"
 
 //%include "xpcf/api/IModuleIndex.i"

@@ -25,13 +25,7 @@
 
 ///
 
-%ignore SolAR::api::sink::operator |;
-%ignore SolAR::api::sink::operator &;
-%ignore SolAR::api::sink::operator ^;
-%ignore SolAR::api::sink::operator ~;
-%ignore SolAR::api::sink::operator |=;
-%ignore SolAR::api::sink::operator &=;
-%ignore SolAR::api::sink::operator ^=;
+%rename("$ignore", regextarget=1, fullname=1) "SolAR::api::sink::operator.*$";
 %include "api/sink/ISinkReturnCode.h"
 
 //#include "ISinkReturnCode.h"

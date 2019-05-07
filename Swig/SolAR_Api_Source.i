@@ -23,13 +23,7 @@
 
 ///
 
-%ignore SolAR::api::source::operator |;
-%ignore SolAR::api::source::operator &;
-%ignore SolAR::api::source::operator ^;
-%ignore SolAR::api::source::operator ~;
-%ignore SolAR::api::source::operator |=;
-%ignore SolAR::api::source::operator &=;
-%ignore SolAR::api::source::operator ^=;
+%rename("$ignore", regextarget=1, fullname=1) "SolAR::api::source::operator.*$";
 %include "api/source/ISourceReturnCode.h"
 
 //#include "ISourceReturnCode.h"

@@ -41,5 +41,6 @@ CALL SWIG ^
  -outdir "!OUTPUT!" ^
  %%F
 )
+:: START CMD /C 
 
 POPD

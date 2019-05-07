@@ -1,6 +1,5 @@
 %module solar_api_fusion
 %{
-//#include "core/Log.h"
 #include "api/fusion/IVisualInertialFusion.h"
 %}
 
@@ -23,6 +22,7 @@
 
 ///
 
-%ignore SolAR::api::fusion::InertialData::timestamp; //TODO: SWIGTYPE_p_std__chrono__high_resolution_clock__time_point
-%ignore SolAR::api::fusion::VisionData::timestamp; //TODO: SWIGTYPE_p_std__chrono__high_resolution_clock__time_point
+//TODO: SWIGTYPE_p_std__chrono__high_resolution_clock__time_point
+%ignore SolAR::api::fusion::InertialData::timestamp;
+%ignore SolAR::api::fusion::VisionData::timestamp;
 %include "api/fusion/IVisualInertialFusion.h"

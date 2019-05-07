@@ -2,7 +2,7 @@
 %{
 #include "api/solver/pose/I2D3DCorrespondencesFinder.h"
 #include "api/solver/pose/I2Dto3DTransformDecomposer.h"
-//#include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h" //TODO Wrong Namespace
+#include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h"
 #include "api/solver/pose/I2DTransformFinder.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
@@ -27,7 +27,7 @@
 
 %shared_ptr(SolAR::api::solver::pose::I2D3DCorrespondencesFinder)
 %shared_ptr(SolAR::api::solver::pose::I2Dto3DTransformDecomposer)
-//%shared_ptr(SolAR::api::solver::pose::I2Dto3DTransformDecomposerValidation) //TODO Wrong Namespace
+%shared_ptr(SolAR::api::solver::pose::I2Dto3DTransformDecomposerValidation)
 %shared_ptr(SolAR::api::solver::pose::I2DTransformFinder)
 %shared_ptr(SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
 %shared_ptr(SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
@@ -40,7 +40,7 @@
 
 %include "api/solver/pose/I2Dto3DTransformDecomposer.h"
 
-//%include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h" //TODO Wrong Namespace
+%include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h"
 
 %include "api/solver/pose/I2DTransformFinder.h"
 

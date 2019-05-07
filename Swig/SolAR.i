@@ -82,7 +82,7 @@
 
 #include "api/solver/pose/I2D3DCorrespondencesFinder.h"
 #include "api/solver/pose/I2Dto3DTransformDecomposer.h"
-//#include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h" //TODO Wrong Namespace
+#include "api/solver/pose/I2Dto3DTransformDecomposerValidation.h"
 #include "api/solver/pose/I2DTransformFinder.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D2D.h"
 #include "api/solver/pose/I3DTransformFinderFrom2D3D.h"
@@ -125,20 +125,20 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 #define XPCF_DEFINE_COMPONENT_TRAITS(fullComponentType,uuidString,nameString,descriptionString)
 */
 
-%import (module="SolAR.Api.Display")	"SolAR_Api_Display.i"
-%import (module="SolAR.Api.Example")	"SolAR_Api_Example.i"
-%import (module="SolAR.Api.Features")	"SolAR_Api_Features.i"
-%import (module="SolAR.Api.Fusion")		"SolAR_Api_Fusion.i"
-%import (module="SolAR.Api.Geom")		"SolAR_Api_Geom.i"
-%import (module="SolAR.Api.Image")		"SolAR_Api_Image.i"
+%import (module="SolAR.Api.Display")		"SolAR_Api_Display.i"
+%import (module="SolAR.Api.Example")		"SolAR_Api_Example.i"
+%import (module="SolAR.Api.Features")		"SolAR_Api_Features.i"
+%import (module="SolAR.Api.Fusion")			"SolAR_Api_Fusion.i"
+%import (module="SolAR.Api.Geom")			"SolAR_Api_Geom.i"
+%import (module="SolAR.Api.Image")			"SolAR_Api_Image.i"
 %import (module="SolAR.Api.Input.Devices")	"SolAR_Api_Input_Devices.i"
 %import (module="SolAR.Api.Input.Files")	"SolAR_Api_Input_Files.i"
-%import (module="SolAR.Api.Pipeline")	"SolAR_Api_Pipeline.i"
-%import (module="SolAR.Api.Reloc")		"SolAR_Api_Reloc.i"
-%import (module="SolAR.Api.Sink")		"SolAR_Api_Sink.i"
-%import (module="SolAR.Api.Solver.Map")	"SolAR_Api_Solver_Map.i"
+%import (module="SolAR.Api.Pipeline")		"SolAR_Api_Pipeline.i"
+%import (module="SolAR.Api.Reloc")			"SolAR_Api_Reloc.i"
+%import (module="SolAR.Api.Sink")			"SolAR_Api_Sink.i"
+%import (module="SolAR.Api.Solver.Map")		"SolAR_Api_Solver_Map.i"
 %import (module="SolAR.Api.Solver.Pose")	"SolAR_Api_Solver_Pose.i"
-%import (module="SolAR.Api.Source")		"SolAR_Api_Source.i"
+%import (module="SolAR.Api.Source")			"SolAR_Api_Source.i"
 %import (module="SolAR.Api.Tracking")		"SolAR_Api_Tracking.i"
 
 %pragma(csharp) moduleimports=%{
@@ -157,10 +157,9 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
     using SolAR.Api.Solver.Map;
     using SolAR.Api.Solver.Pose;
     using SolAR.Api.Source;
-	using SolAR.Api.Tracking;
+    using SolAR.Api.Tracking;
 %}
 
-//*
 BIND_TO_INTERFACE(IConfigurable,	xpcf::IConfigurable)
 
 BIND_TO_INTERFACE(I2DOverlay,		SolAR::api::display::I2DOverlay)
@@ -172,25 +171,25 @@ BIND_TO_INTERFACE(IMatchesOverlay,	SolAR::api::display::IMatchesOverlay)
 BIND_TO_INTERFACE(IInterface1,	SolAR::api::example::IInterface1)
 BIND_TO_INTERFACE(IInterface2,	SolAR::api::example::IInterface2)
 
-BIND_TO_INTERFACE(IContoursExtractor,		SolAR::api::features::IContoursExtractor)
-BIND_TO_INTERFACE(IContoursFilter,			SolAR::api::features::IContoursFilter)
-BIND_TO_INTERFACE(IDescriptorMatcher,		SolAR::api::features::IDescriptorMatcher)
-BIND_TO_INTERFACE(IDescriptorsExtractor,	SolAR::api::features::IDescriptorsExtractor)
+BIND_TO_INTERFACE(IContoursExtractor,				SolAR::api::features::IContoursExtractor)
+BIND_TO_INTERFACE(IContoursFilter,					SolAR::api::features::IContoursFilter)
+BIND_TO_INTERFACE(IDescriptorMatcher,				SolAR::api::features::IDescriptorMatcher)
+BIND_TO_INTERFACE(IDescriptorsExtractor,			SolAR::api::features::IDescriptorsExtractor)
 BIND_TO_INTERFACE(IDescriptorsExtractorSBPattern,	SolAR::api::features::IDescriptorsExtractorSBPattern)
-BIND_TO_INTERFACE(IKeypointDetector,		SolAR::api::features::IKeypointDetector)
-BIND_TO_INTERFACE(IKeypointDetectorRegion,		SolAR::api::features::IKeypointDetectorRegion)
-BIND_TO_INTERFACE(IKeypointsReIndexer,		SolAR::api::features::IKeypointsReIndexer)
-BIND_TO_INTERFACE(IMatchesFilter,			SolAR::api::features::IMatchesFilter)
-BIND_TO_INTERFACE(ISBPatternReIndexer,		SolAR::api::features::ISBPatternReIndexer)
+BIND_TO_INTERFACE(IKeypointDetector,				SolAR::api::features::IKeypointDetector)
+BIND_TO_INTERFACE(IKeypointDetectorRegion,			SolAR::api::features::IKeypointDetectorRegion)
+BIND_TO_INTERFACE(IKeypointsReIndexer,				SolAR::api::features::IKeypointsReIndexer)
+BIND_TO_INTERFACE(IMatchesFilter,					SolAR::api::features::IMatchesFilter)
+BIND_TO_INTERFACE(ISBPatternReIndexer,				SolAR::api::features::ISBPatternReIndexer)
 
 BIND_TO_INTERFACE(IVisualInertialFusion,	SolAR::api::fusion::IVisualInertialFusion)
 
 BIND_TO_INTERFACE(I2DTransform,			SolAR::api::geom::I2DTransform)
-BIND_TO_INTERFACE(IProject,			SolAR::api::geom::IProject)
+BIND_TO_INTERFACE(IProject,				SolAR::api::geom::IProject)
 BIND_TO_INTERFACE(IUnproject,			SolAR::api::geom::IUnproject)
 BIND_TO_INTERFACE(I3DTransform,			SolAR::api::geom::I3DTransform)
 BIND_TO_INTERFACE(IImage2WorldMapper,	SolAR::api::geom::IImage2WorldMapper)
-BIND_TO_INTERFACE(IUndistortPoints,	SolAR::api::geom::IUndistortPoints)
+BIND_TO_INTERFACE(IUndistortPoints,		SolAR::api::geom::IUndistortPoints)
 
 BIND_TO_INTERFACE(IImageConvertor,			SolAR::api::image::IImageConvertor)
 BIND_TO_INTERFACE(IImageFilter,				SolAR::api::image::IImageFilter)
@@ -211,7 +210,7 @@ BIND_TO_INTERFACE(IPipeline,	SolAR::api::pipeline::IPipeline)
 BIND_TO_INTERFACE(IKeyframeRetriever,	SolAR::api::reloc::IKeyframeRetriever)
 BIND_TO_INTERFACE(IRelocalizer,			SolAR::api::reloc::IRelocalizer)
 
-BIND_TO_INTERFACE(ISinkPoseImage,	SolAR::api::sink::ISinkPoseImage)
+BIND_TO_INTERFACE(ISinkPoseImage,			SolAR::api::sink::ISinkPoseImage)
 BIND_TO_INTERFACE(ISinkPoseTextureBuffer,	SolAR::api::sink::ISinkPoseTextureBuffer)
 
 BIND_TO_INTERFACE(IBundler,				SolAR::api::solver::map::IBundler)
@@ -220,16 +219,14 @@ BIND_TO_INTERFACE(IMapFilter,			SolAR::api::solver::map::IMapFilter)
 BIND_TO_INTERFACE(IMapper,				SolAR::api::solver::map::IMapper)
 BIND_TO_INTERFACE(ITriangulator,		SolAR::api::solver::map::ITriangulator)
 
-BIND_TO_INTERFACE(I2D3DCorrespondencesFinder,	SolAR::api::solver::pose::I2D3DCorrespondencesFinder)
-BIND_TO_INTERFACE(I2Dto3DTransformDecomposer,	SolAR::api::solver::pose::I2Dto3DTransformDecomposer)
-//BIND_TO_INTERFACE(I2Dto3DTransformDecomposerValidation,	SolAR::api::solver::pose::I2Dto3DTransformDecomposerValidation) //TODO Wrong Namespace
-BIND_TO_INTERFACE(I2DTransformFinder,			SolAR::api::solver::pose::I2DTransformFinder)
-BIND_TO_INTERFACE(I3DTransformFinderFrom2D2D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
-BIND_TO_INTERFACE(I3DTransformFinderFrom2D3D,	SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
-BIND_TO_INTERFACE(I3DTransformSACFinderFrom2D3D,	SolAR::api::solver::pose::I3DTransformSACFinderFrom2D3D)
-BIND_TO_INTERFACE(IHomographyValidation,		SolAR::api::solver::pose::IHomographyValidation)
+BIND_TO_INTERFACE(I2D3DCorrespondencesFinder,			SolAR::api::solver::pose::I2D3DCorrespondencesFinder)
+BIND_TO_INTERFACE(I2Dto3DTransformDecomposer,			SolAR::api::solver::pose::I2Dto3DTransformDecomposer)
+BIND_TO_INTERFACE(I2Dto3DTransformDecomposerValidation,	SolAR::api::solver::pose::I2Dto3DTransformDecomposerValidation)
+BIND_TO_INTERFACE(I2DTransformFinder,					SolAR::api::solver::pose::I2DTransformFinder)
+BIND_TO_INTERFACE(I3DTransformFinderFrom2D2D,			SolAR::api::solver::pose::I3DTransformFinderFrom2D2D)
+BIND_TO_INTERFACE(I3DTransformFinderFrom2D3D,			SolAR::api::solver::pose::I3DTransformFinderFrom2D3D)
+BIND_TO_INTERFACE(I3DTransformSACFinderFrom2D3D,		SolAR::api::solver::pose::I3DTransformSACFinderFrom2D3D)
+BIND_TO_INTERFACE(IHomographyValidation,				SolAR::api::solver::pose::IHomographyValidation)
 
-BIND_TO_INTERFACE(ISourceImage,		SolAR::api::source::ISourceImage)
+BIND_TO_INTERFACE(ISourceImage,					SolAR::api::source::ISourceImage)
 BIND_TO_INTERFACE(IOpticalFlowEstimator,		SolAR::api::tracking::IOpticalFlowEstimator)
-
-/* */

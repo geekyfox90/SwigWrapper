@@ -37,6 +37,7 @@ SOURCES += \
 	SolAR_Api_Solver_Map_wrap.cxx \
 	SolAR_Api_Solver_Pose_wrap.cxx \
 	SolAR_Api_Source_wrap.cxx \
+	SolAR_Api_Tracking_wrap.cxx \
 	SolAR_Core_wrap.cxx \
 	SolAR_Datastructure_wrap.cxx \
 	SolAR_wrap.cxx \
