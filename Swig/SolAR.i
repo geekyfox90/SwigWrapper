@@ -6,7 +6,6 @@
 %}
 
 %include "Swig.i"
-
 ///
 
 %include "SharedFifo.hpp"

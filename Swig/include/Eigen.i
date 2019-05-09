@@ -55,11 +55,6 @@ namespace SolAR{namespace datastructure{
 			int rows() const;
 			int size() const;
 		};
-		
-		//template <class T, int Rows, int Options = Eigen::ColMajor>
-		//typedef Matrix<T, Dim, 1, Options> Vector;
-		
-		//typedef Matrix<float, 3, 1> Vector3f;
 	}
 	
 	//template <class T, int Rows, int Cols, int Options = Eigen::RowMajor>
@@ -68,7 +63,7 @@ namespace SolAR{namespace datastructure{
 	template <class T, int Dim>
 	typedef Maths::Matrix<T, Dim, 1> Vector;
 	
-	typedef Maths::Matrix<float, 3, 1> Vector3f;
+	/*typedef Maths::Matrix<float, 3, 1> Vector3f;*/
 	
 	template <class Scalar, int Dim>
 	class Transform

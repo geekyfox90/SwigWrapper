@@ -29,6 +29,9 @@ set (SOURCES
 	XPCF_Properties_wrap.cxx
 	XPCF_Threading_wrap.cxx
 	XPCF_Traits_wrap.cxx
+	
+	#include/SolARPluginPipelineManager.cpp
+	#SolARPipelineManager_wrap.cxx
 )
 set (HEADERS 
 )
