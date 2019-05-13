@@ -1,4 +1,8 @@
-CLS
+mkdir "%BCOMDEVROOT%/bcomBuild/SolARPipelineManager/0.5.2/CSharp"
+del /s "%BCOMDEVROOT%\bcomBuild\SolARPipelineManager\0.5.2\CSharp\*.*"
+swig -csharp -namespace SolAR -c++ -fcompact -small -O -Iswig -DSWIG_CSHARP_NO_WSTRING_HELPER -outdir "%BCOMDEVROOT%/bcomBuild/SolARPipelineManager/0.5.2/CSharp" -o "../../SolARPipelineManager/src/PipelineManager_wrap.cpp" ../../SolARPipelineManager/interfaces/SolARPipelineManager.i
+
+::CLS
 @ECHO OFF
 
 setlocal ENABLEDELAYEDEXPANSION
@@ -25,6 +29,7 @@ SET OPTIONS=^
  -I./Swig/include ^
  -I%BCOMDEVROOT%/thirdParties/xpcf/2.1.0/interfaces ^
  -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.2/interfaces ^
+ -dllimport SolARWrapper ^
  
 
 FOR %%F IN (Swig\*.i) DO (
@@ -49,6 +54,6 @@ xcopy "CMakeLists.txt" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
 xcopy "packagedependencies.txt" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
 xcopy "cmake_uninstall.cmake.in" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
 xcopy "bcom-SolARWrapper.pc.in" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
-xcopy "Swig\include\SolARPluginPipelineManager.cpp" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"
-xcopy "Swig\include\SolARPluginPipelineManager.h" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"
-xcopy "Swig\include\PipelineManagerAPI.h" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"
+::xcopy "Swig\include\SolARPluginPipelineManager.cpp" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"
+::xcopy "Swig\include\SolARPluginPipelineManager.h" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"
+::xcopy "Swig\include\PipelineManagerAPI.h" "%BCOMDEVROOT%\bcombuild\SolARWrapper\include\"

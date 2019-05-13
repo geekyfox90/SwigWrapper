@@ -1,5 +1,5 @@
 // Fix warnings
-//%include "std_except.i" // Typemaps used by the STL wrappers that throw exceptions
+%include "std_except.i" // Typemaps used by the STL wrappers that throw exceptions
 //%include "director.swg" // support for director classes
 
 // Common
@@ -8,7 +8,6 @@
 %include "swiginterface.i" // SWIG interface feature and typemaps implementation
 %include "swigtype_inout.i" // support for input/output arguments
 %include "typemaps.i" // Pointer and reference handling typemap library
-%include "wchar.i" // Typemaps for the wchar_t type
 %include "attribute.i" // convert a pair of set/get methods into a "native" attribute
 
 // STD
@@ -36,10 +35,11 @@
 %include "enums.swg" // C/C++ enums to be wrapped by proper C# enums
 //%include "enumsimple.swg" // backwards compatible: Enums declared within a C++ class were wrapped by constant integers
 //%include "enumtypesafe.swg" // Converts enum into class
-
+%include "wchar.i"
 // BOOST
 %include "boost_intrusive_ptr.i" // SWIG_INTRUSIVE_PTR_TYPEMAPS SWIG_INTRUSIVE_PTR_TYPEMAPS_NO_WRAP  
 %include "boost_shared_ptr.i" // SWIG_SHARED_PTR_TYPEMAPS 
+
 
 // To use non-const std::string references
 %apply const std::string & {std::string &};
