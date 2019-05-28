@@ -23,7 +23,7 @@ using namespace SolAR::datastructure;
 
 %typemap(csimports) SWIGTYPE
 %{
-    using XPCF.Core;
+    //using XPCF.Core;
     using SolAR.Core;
 %}
 
