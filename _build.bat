@@ -10,12 +10,12 @@ cls
 :: ONE
 :: echo FULL VERSION
 
-SET CURRENTDIR="%cd%"
-echo Apply BuildCSharp bat file in SolARPipelineManager folder
+::SET CURRENTDIR="%cd%"
+::echo Apply BuildCSharp bat file in SolARPipelineManager folder
 
-cd ..\..\SolARPipelineManager\
-call BuildCSharp.bat
-cd %CURRENTDIR%
+::cd ..\..\SolARPipelineManager\
+::call BuildCSharp.bat
+::cd %CURRENTDIR%
 
 setlocal ENABLEDELAYEDEXPANSION
 
@@ -32,8 +32,8 @@ SET OPTIONS=^
  -outcurrentdir ^
  -I./Swig ^
  -I./Swig/include ^
- -I%BCOMDEVROOT%/thirdParties/xpcf/2.1.0/interfaces ^
- -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.5.2/interfaces ^
+ -I%BCOMDEVROOT%/thirdParties/xpcf/2.2.0/interfaces ^
+ -I%BCOMDEVROOT%/bcomBuild/SolARFramework/0.6.0/interfaces ^
  -dllimport SolARWrapper ^
  
 
@@ -54,11 +54,9 @@ CALL SWIG ^
 
 POPD
 
-xcopy "*.cxx" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
-xcopy "CMakeLists.txt" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
-xcopy "packagedependencies.txt" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
-xcopy "cmake_uninstall.cmake.in" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
-xcopy "bcom-SolARWrapper.pc.in" "%BCOMDEVROOT%\bcombuild\SolARWrapper"
+xcopy "*.cxx" "%BCOMDEVROOT%\bcombuild\SolARWrapper" /Y
+xcopy "*.txt" "%BCOMDEVROOT%\bcombuild\SolARWrapper" /Y
+xcopy "*.in" "%BCOMDEVROOT%\bcombuild\SolARWrapper" /Y
 GOTO :END
 
 

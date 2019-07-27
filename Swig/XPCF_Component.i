@@ -24,6 +24,7 @@
 
 %include "xpcf/component/ComponentFactory.h"
 
+namespace std::placeholders::_1 {}
 //%include "xpcf/component/ComponentFactory.i"
 %include "xpcf/component/ComponentBase.h"
 

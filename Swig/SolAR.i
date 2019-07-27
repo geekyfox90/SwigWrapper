@@ -6,6 +6,7 @@
 %}
 
 %include "Swig.i"
+
 ///
 
 %include "SharedFifo.hpp"
@@ -26,9 +27,6 @@
 #include "api/display/I3DPointsViewer.h"
 #include "api/display/IImageViewer.h"
 #include "api/display/IMatchesOverlay.h"
-
-#include "api/example/IInterface1.h"
-#include "api/example/IInterface2.h"
 
 #include "api/features/IContoursExtractor.h"
 #include "api/features/IContoursFilter.h"
@@ -125,7 +123,6 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 */
 
 %import (module="SolAR.Api.Display")		"SolAR_Api_Display.i"
-%import (module="SolAR.Api.Example")		"SolAR_Api_Example.i"
 %import (module="SolAR.Api.Features")		"SolAR_Api_Features.i"
 %import (module="SolAR.Api.Fusion")			"SolAR_Api_Fusion.i"
 %import (module="SolAR.Api.Geom")			"SolAR_Api_Geom.i"
@@ -143,7 +140,6 @@ SRef<I> bindTo(SRef<org::bcom::xpcf::IComponentIntrospect> component)
 %pragma(csharp) moduleimports=%{
     using XPCF.Api;
     using SolAR.Api.Display;
-    using SolAR.Api.Example;
     using SolAR.Api.Features;
     using SolAR.Api.Fusion;
     using SolAR.Api.Geom;
@@ -166,9 +162,6 @@ BIND_TO_INTERFACE(I3DOverlay,		SolAR::api::display::I3DOverlay)
 BIND_TO_INTERFACE(I3DPointsViewer,	SolAR::api::display::I3DPointsViewer)
 BIND_TO_INTERFACE(IImageViewer,		SolAR::api::display::IImageViewer)
 BIND_TO_INTERFACE(IMatchesOverlay,	SolAR::api::display::IMatchesOverlay)
-
-BIND_TO_INTERFACE(IInterface1,	SolAR::api::example::IInterface1)
-BIND_TO_INTERFACE(IInterface2,	SolAR::api::example::IInterface2)
 
 BIND_TO_INTERFACE(IContoursExtractor,				SolAR::api::features::IContoursExtractor)
 BIND_TO_INTERFACE(IContoursFilter,					SolAR::api::features::IContoursFilter)

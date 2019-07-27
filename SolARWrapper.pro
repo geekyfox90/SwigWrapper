@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
 	SolAR_Api_Display_wrap.cxx \
-	SolAR_Api_Example_wrap.cxx \
 	SolAR_Api_Features_wrap.cxx \
 	SolAR_Api_Fusion_wrap.cxx \
 	SolAR_Api_Geom_wrap.cxx \
@@ -53,18 +52,18 @@ SOURCES += \
 HEADERS += \
 
 INCLUDEPATH += \
-    ../../SolARFramework/0.5.2/interfaces \
-    ../../SolARModuleTools/0.5.2/interfaces \
-    ../../../thirdParties/xpcf/2.1.0/interfaces \
+    ../../SolARFramework/0.6.0/interfaces \
+    ../../SolARModuleTools/0.6.0/interfaces \
+    ../../../thirdParties/xpcf/2.2.0/interfaces \
     ../../../thirdParties/eigen/3.3.5/interfaces \
-    ../../../thirdParties/boost/1.68.0/interfaces \
+    ../../../thirdParties/boost/1.70.0/interfaces \
     ../../../thirdParties/spdlog/0.14.0/interfaces \
 
 LIBS += \
-    -L../../SolARFramework/0.5.2/lib/x86_64/shared/debug \
-    -L../../SolARModuleTools/0.5.2/lib/x86_64/shared/debug \
-    -L../../../thirdParties/xpcf/2.1.0/lib/x86_64/shared/debug \
-    -L../../../thirdParties/boost/1.68.0/lib/x86_64/shared/debug \
+    -L../../SolARFramework/0.6.0/lib/x86_64/shared/debug \
+    -L../../SolARModuleTools/0.6.0/lib/x86_64/shared/debug \
+    -L../../../thirdParties/xpcf/2.2.0/lib/x86_64/shared/debug \
+    -L../../../thirdParties/boost/1.70.0/lib/x86_64/shared/debug \
     -lSolARFramework \
     -lSolARModuleTools \
     -lxpcf \
