@@ -1,26 +1,45 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2018-11-14T12:19:14
-#
-#-------------------------------------------------
-
+## remove Qt dependencies
 QT       -= core gui
+CONFIG -= qt
 
-TARGET = SolARUnityPlugin
-TEMPLATE = lib
+## global defintions : target lib name, version
+TARGET = SolARWrapper
+FRAMEWORK = $$TARGET
+VERSION=0.6.0
 
-DEFINES += SOLARUNITYPLUGIN_LIBRARY
+DEFINES += MYVERSION=$${VERSION}
+DEFINES += TEMPLATE_LIBRARY
+CONFIG += c++1z
 
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which has been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
 
-# You can also make your code fail to compile if you use deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+CONFIG(debug,debug|release) {
+    DEFINES += _DEBUG=1
+    DEFINES += DEBUG=1
+}
+
+CONFIG(release,debug|release) {
+    DEFINES += _NDEBUG=1
+    DEFINES += NDEBUG=1
+}
+
+DEPENDENCIESCONFIG = shared recurse
+
+include (../../builddefs/qmake/templatelibconfig.pri)
+
+## DEFINES FOR MSVC/INTEL C++ compilers
+msvc {
+DEFINES += "_BCOM_SHARED=__declspec(dllexport)"
+}
+
+INCLUDEPATH += \
+    $$(REMAKENROOT)/SolARFramework/0.6.0/interfaces \
+    $$(REMAKENROOT)/SolARModuleTools/0.6.0/interfaces \
+    $$(REMAKENROOT)/xpcf/2.2.0/interfaces \
+    $$(REMAKENROOT)/../thirdParties/eigen/3.3.5/interfaces \
+    $$(REMAKENROOT)/../thirdParties/boost/1.70.0/interfaces \
+    $$(REMAKENROOT)/../thirdParties/spdlog/0.14.0/interfaces \
+
+HEADERS += \
 
 SOURCES += \
 	SolAR_Api_Display_wrap.cxx \
@@ -49,30 +68,44 @@ SOURCES += \
 	XPCF_Threading_wrap.cxx \
 	XPCF_Traits_wrap.cxx \
 
-HEADERS += \
-
-INCLUDEPATH += \
-    ../../SolARFramework/0.6.0/interfaces \
-    ../../SolARModuleTools/0.6.0/interfaces \
-    ../../../thirdParties/xpcf/2.2.0/interfaces \
-    ../../../thirdParties/eigen/3.3.5/interfaces \
-    ../../../thirdParties/boost/1.70.0/interfaces \
-    ../../../thirdParties/spdlog/0.14.0/interfaces \
-
 LIBS += \
-    -L../../SolARFramework/0.6.0/lib/x86_64/shared/debug \
-    -L../../SolARModuleTools/0.6.0/lib/x86_64/shared/debug \
-    -L../../../thirdParties/xpcf/2.2.0/lib/x86_64/shared/debug \
-    -L../../../thirdParties/boost/1.70.0/lib/x86_64/shared/debug \
+    -L$$(REMAKENROOT)/SolARFramework/0.6.0/lib/x86_64/shared/debug \
+    -L$$(REMAKENROOT)/SolARModuleTools/0.6.0/lib/x86_64/shared/debug \
+    -L$$(REMAKENROOT)/xpcf/2.2.0/lib/x86_64/shared/debug \
+    -L$$(REMAKENROOT)/../thirdParties/boost/1.70.0/lib/x86_64/shared/debug \
     -lSolARFramework \
     -lSolARModuleTools \
     -lxpcf \
     -lboost_filesystem \
     -lboost_system \
 
-DEFINES += BOOST_ALL_NO_LIB
-
 unix {
-    target.path = /usr/lib
-    INSTALLS += target
+    QMAKE_CXXFLAGS += -Wignored-qualifiers
+    QMAKE_LINK=clang++
+    QMAKE_CXX = clang++
 }
+
+macx {
+    DEFINES += _MACOS_TARGET_
+    QMAKE_MAC_SDK= macosx
+    QMAKE_CFLAGS += -mmacosx-version-min=10.7 -std=c11 #-x objective-c++
+    QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -std=c11 -std=c++11 -O3 -fPIC#-x objective-c++
+    QMAKE_LFLAGS += -mmacosx-version-min=10.7 -v -lstdc++
+    LIBS += -lstdc++ -lc -lpthread
+}
+
+win32 {
+
+    DEFINES += WIN64 UNICODE _UNICODE
+    QMAKE_COMPILER_DEFINES += _WIN64
+    QMAKE_CXXFLAGS += -wd4250 -wd4251 -wd4244 -wd4275 /Od
+}
+
+header_files.path = $${PROJECTDEPLOYDIR}/interfaces
+header_files.files = $$files($${PWD}/interfaces/*.h*)
+
+xpcf_xml_files.path = $$(HOME)/.xpcf/SolAR
+xpcf_xml_files.files=$$files($${PWD}/xpcf*.xml)
+
+INSTALLS += header_files
+INSTALLS += xpcf_xml_files

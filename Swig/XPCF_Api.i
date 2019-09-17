@@ -98,7 +98,8 @@ template <typename I> bool injectExists(const char * name) const;
 %include "xpcf/api/IComponentManager.h"
 
 //#include "xpcf/api/IComponentIntrospect.i"
-//%include "xpcf/api/IConfigurable.h" //TODO Syntax error
+%ignore getProperty;
+%include "xpcf/api/IConfigurable.h"
 
 //#include "xpcf/api/IComponentIntrospect.i"
 //#include "xpcf/api/ModuleMetadata.i"
