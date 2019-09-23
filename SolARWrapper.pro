@@ -65,7 +65,6 @@ SOURCES += \
 	XPCF_Core_wrap.cxx \
 	XPCF_Module_wrap.cxx \
 	XPCF_Properties_wrap.cxx \
-	XPCF_Threading_wrap.cxx \
 	XPCF_Traits_wrap.cxx \
 
 LIBS += \

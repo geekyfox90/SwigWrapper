@@ -4,14 +4,13 @@
 #include "xpcf/api/IComponentIntrospect.h"
 #include "xpcf/api/IComponentManager.h"
 #include "xpcf/api/IConfigurable.h"
-#include "xpcf/api/IInjectable.h"
-#include "xpcf/api/InjectableMetadata.h"
-#include "xpcf/core/Exception.h"
 #include "xpcf/module/IModuleIndex.h"
 #include "xpcf/api/IModuleManager.h"
 #include "xpcf/api/InterfaceMetadata.h"
 #include "xpcf/api/ModuleMetadata.h"
 #include "xpcf/xpcf.h"
+#include "xpcf/api/IInjectable.h"
+#include "xpcf/api/InjectableMetadata.h"
 %}
 
 %include "Swig.i"
@@ -20,6 +19,14 @@
 %import (module="XPCF.Collection") "XPCF_Collection.i"
 %import (module="XPCF.Properties") "XPCF_Properties.i"
 %import (module="XPCF.Traits") "XPCF_Traits.i"
+
+%pragma(csharp) moduleimports=
+%{
+	using XPCF.Core;
+    using XPCF.Collection;
+    using XPCF.Properties;
+    using XPCF.Traits;
+%}
 
 %typemap(csimports) SWIGTYPE
 %{
@@ -98,7 +105,6 @@ template <typename I> bool injectExists(const char * name) const;
 %include "xpcf/api/IComponentManager.h"
 
 //#include "xpcf/api/IComponentIntrospect.i"
-%ignore getProperty;
 %include "xpcf/api/IConfigurable.h"
 
 //#include "xpcf/api/IComponentIntrospect.i"
@@ -134,5 +140,6 @@ namespace std{class runtime_error {};}
 %ignore org::bcom::xpcf::InjectableNotFoundException::InjectableNotFoundException(const std::string & what);
 %ignore org::bcom::xpcf::InjectableDeclarationException::InjectableDeclarationException(const std::string & what);
 %include "xpcf/core/Exception.h"
+
 
 

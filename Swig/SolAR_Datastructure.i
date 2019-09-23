@@ -87,11 +87,13 @@ using namespace SolAR::datastructure;
 
 ///
 
-%include "datastructure/CameraDefinitions.h"
 
 %include "Eigen.i"
 %include "datastructure/MathDefinitions.h"
 %include "MathDefinitions.i"
+
+%include "datastructure/CameraDefinitions.h"
+
 
 //#include "datastructure/MathDefinitions.i"
 %rename("$ignore", regextarget=1, fullname=1) "SolAR::datastructure::Point.D.::operator.*$";

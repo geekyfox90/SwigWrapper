@@ -23,7 +23,7 @@ SET OPTIONS=^
  -outcurrentdir ^
  -I./Swig ^
  -I./Swig/include ^
- -I%REMAKENROOT%/xpcf/2.2.0/interfaces ^
+ -I%REMAKENROOT%/xpcf/2.3.0/interfaces ^
  -I%REMAKENROOT%/SolARFramework/0.6.0/interfaces ^
  -dllimport SolARWrapper ^
  
