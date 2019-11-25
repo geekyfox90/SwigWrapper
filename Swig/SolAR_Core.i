@@ -25,7 +25,6 @@
 %include "core/SolARFrameworkDefinitions.h"
 
 //%include "SolARFrameworkDefinitions.i"
-%ignore SolAR::Log::logger();
 %include "core/Log.h"
 
 //%include "Log.i"

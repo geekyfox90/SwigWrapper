@@ -58,7 +58,7 @@
 		IEnumerator IEnumerable.GetEnumerator() { return getEnumerator(); }
 	%}
 }
-#pragma SWIG nowarn=320 //TODO Explicit template instantiation ignored.
+#pragma SWIG nowarn=320 //Explicit template instantiation ignored.
 %include "xpcf/collection/IEnumerable.h"
 
 //%include "xpcf/collection/IEnumerable.i"

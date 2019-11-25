@@ -17,7 +17,6 @@
 %include "std_common.i" // define size_t 
 //%include "std_complex.i" // Typemaps for handling std::complex<float> and std::complex<double>
 %include "std_deque.i"
-%include "std_except.i" // Typemaps used by the STL wrappers that throw exceptions
 %include "std_map.i" // SWIG typemaps for std::map< K, T, C >
 %include "std_pair.i" // SWIG typemaps for std::pair
 //%include "std_shared_ptr.i" // boost_shared_ptr using std

@@ -25,22 +25,6 @@
 %include "xpcf/properties/IProperty.h"
 
 //%include "xpcf/properties/IProperty.i"
-//TODO
-/*
-%apply bool & INOUT { bool & wrappedValue };
-%apply signed char & INOUT { signed char & wrappedValue };
-%apply unsigned char & INOUT { unsigned char & wrappedValue };
-%apply short & INOUT { short & wrappedValue };
-%apply unsigned short & INOUT { unsigned short & wrappedValue };
-%apply int & INOUT { int & wrappedValue };
-%apply unsigned int & INOUT { unsigned int & wrappedValue };
-%apply long & INOUT { long & wrappedValue };
-%apply unsigned long & INOUT { unsigned long & wrappedValue };
-%apply long long & INOUT { long long & wrappedValue };
-%apply unsigned long long & INOUT { unsigned long long & wrappedValue };
-%apply float & INOUT { float & wrappedValue };
-%apply double & INOUT { double & wrappedValue };
-*/
-
+//ignore wrapping methods
 %rename("$ignore", regextarget=1, fullname=1) "org::bcom::xpcf::IPropertyMap::wrap.*$";
 %include "xpcf/properties/IPropertyMap.h"
