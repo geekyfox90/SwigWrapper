@@ -28,20 +28,13 @@ DEPENDENCIESCONFIG = sharedlib recursive install
 PROJECTCONFIG = QTVS
 
 #NOTE : CONFIG as staticlib or sharedlib, DEPENDENCIESCONFIG as staticlib or sharedlib, QMAKE_TARGET.arch and PROJECTDEPLOYDIR MUST BE DEFINED BEFORE templatelibconfig.pri inclusion
-include ($$(REMAKEN_RULES_ROOT)/qmake/templatelibconfig.pri)
+include ($$shell_quote($$shell_path($$(REMAKEN_RULES_ROOT)/qmake/templatelibconfig.pri)))  # Shell_quote & shell_path required for visual on windows
 
 ## DEFINES FOR MSVC/INTEL C++ compilers
 msvc {
 DEFINES += "_BCOM_SHARED=__declspec(dllexport)"
 }
 
-INCLUDEPATH += \
-    $$(REMAKENROOT)/SolARFramework/0.6.0/interfaces \
-    $$(REMAKENROOT)/SolARModuleTools/0.6.0/interfaces \
-    $$(REMAKENROOT)/xpcf/2.2.0/interfaces \
-    $$(REMAKENROOT)/../thirdParties/eigen/3.3.5/interfaces \
-    $$(REMAKENROOT)/../thirdParties/boost/1.70.0/interfaces \
-    $$(REMAKENROOT)/../thirdParties/spdlog/0.14.0/interfaces \
 
 HEADERS += \
 
@@ -71,18 +64,7 @@ SOURCES += \
 	XPCF_Properties_wrap.cxx \
 	XPCF_Traits_wrap.cxx \
 
-LIBS += \
-    -L$$(REMAKENROOT)/SolARFramework/0.6.0/lib/x86_64/shared/debug \
-    -L$$(REMAKENROOT)/SolARModuleTools/0.6.0/lib/x86_64/shared/debug \
-    -L$$(REMAKENROOT)/xpcf/2.2.0/lib/x86_64/shared/debug \
-    -L$$(REMAKENROOT)/../thirdParties/boost/1.70.0/lib/x86_64/shared/debug \
-    -lSolARFramework \
-    -lSolARModuleTools \
-    -lxpcf \
-    -lboost_filesystem \
-    -lboost_system \
-
-unix {
+unix:!android {
     QMAKE_CXXFLAGS += -Wignored-qualifiers
     QMAKE_LINK=clang++
     QMAKE_CXX = clang++
@@ -104,6 +86,10 @@ win32 {
     QMAKE_CXXFLAGS += -wd4250 -wd4251 -wd4244 -wd4275 /Od
 }
 
+android {
+    QMAKE_LFLAGS += -nostdlib++
+}
+
 header_files.path = $${PROJECTDEPLOYDIR}/interfaces
 header_files.files = $$files($${PWD}/interfaces/*.h*)
 
@@ -117,4 +103,4 @@ OTHER_FILES += \
     packagedependencies.txt
 
 #NOTE : Must be placed at the end of the .pro
-include ($$(REMAKEN_RULES_ROOT)/qmake/remaken_install_target.pri))
+include ($$shell_quote($$shell_path($$(REMAKEN_RULES_ROOT)/qmake/remaken_install_target.pri)))) # Shell_quote & shell_path required for visual on windows
