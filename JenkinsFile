@@ -7,7 +7,7 @@ pipeline {
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', type: 'PT_BRANCH', selectedValue: 'DEFAULT',
-                name: 'BRANCH', defaultValue: 'develop', useRepository: '.*SwingWrapper.git'
+                name: 'BRANCH', defaultValue: 'develop', useRepository: '.*SwigWrapper.git'
     }
     stages {
 
@@ -31,7 +31,7 @@ pipeline {
         stage("Build") {
             steps {
                 withEnv(['REMAKEN_RULES_ROOT=/home/jenkins/.remaken/rules/']) {
-                    sh "qmake SwingWrapper.pro"
+                    sh "qmake SwigWrapper.pro"
                     sh "make"
                 }
             }
@@ -51,3 +51,8 @@ pipeline {
     }
 
 }
+        stage("Get Third Parties") {
+            steps {
+                installDependency('freeglut','3.0.0')
+            }
+        }        
