@@ -31,7 +31,7 @@ pipeline {
         stage("Build") {
             steps {
                 withEnv(['REMAKEN_RULES_ROOT=/home/jenkins/.remaken/rules/']) {
-                    sh "qmake SwigWrapper.pro"
+                    sh "qmake SolARWrapper.pro"
                     sh "make"
                 }
             }
@@ -51,8 +51,3 @@ pipeline {
     }
 
 }
-        stage("Get Third Parties") {
-            steps {
-                installDependency('freeglut','3.0.0')
-            }
-        }        
