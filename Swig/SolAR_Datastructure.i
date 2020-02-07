@@ -116,6 +116,7 @@ using namespace SolAR::datastructure;
 %rename (EgalOperator) SolAR::datastructure::DescriptorView::operator=;
 %ignore SolAR::datastructure::DescriptorBufferIterator::operator++;
 %ignore SolAR::datastructure::DescriptorBufferIterator::operator!=;
+%ignore SolAR::datastructure::DescriptorBufferIterator::operator*;
 %ignore SolAR::datastructure::DescriptorView::data() const;
 %ignore SolAR::datastructure::DescriptorBuffer::data() const;
 %include "datastructure/DescriptorBuffer.h"
