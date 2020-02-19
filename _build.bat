@@ -13,7 +13,7 @@ PUSHD %~dp0
 
 SET LANG=csharp
 SET COMPILER=win-cl-14.1
-SET OUT=%REMAKENROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper\%LANG%
+SET OUT=%REMAKEN_RULES_ROOT%\..\packages\SolARBuild\%COMPILER%\SolARWrapper\%LANG%
 
 SET OPTIONS=^
  -c++ ^
@@ -22,8 +22,8 @@ SET OPTIONS=^
  -outcurrentdir ^
  -I./Swig ^
  -I./Swig/include ^
- -I%REMAKENROOT%/packages/%COMPILER%/xpcf/2.3.0/interfaces ^
- -I%REMAKENROOT%/packages/SolARBuild/%COMPILER%/SolARFramework/0.7.0/interfaces ^
+ -I%REMAKEN_RULES_ROOT%/../packages/%COMPILER%/xpcf/2.3.1/interfaces ^
+ -I%REMAKEN_RULES_ROOT%/../packages/SolARBuild/%COMPILER%/SolARFramework/0.7.0/interfaces ^
  -dllimport SolARWrapper ^
  
 
@@ -43,9 +43,9 @@ CALL SWIG ^
 
 POPD
 
-xcopy "*.cxx" "%REMAKENROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
-xcopy "*.txt" "%REMAKENROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
-xcopy "*.in" "%REMAKENROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
+xcopy "*.cxx" "%REMAKEN_RULES_ROOT%\..\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
+xcopy "*.txt" "%REMAKEN_RULES_ROOT%\..\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
+xcopy "*.in" "%REMAKEN_RULES_ROOT%\..\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
 GOTO :END
 
 :END

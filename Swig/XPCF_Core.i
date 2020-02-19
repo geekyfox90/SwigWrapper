@@ -15,6 +15,7 @@
 
 %include "xpcf/core/helpers.h"
 
+
 %include "xpcf/xpcf_api_define.h"
 
 %rename (UUID) boost::uuids::uuid;
