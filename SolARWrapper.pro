@@ -64,6 +64,8 @@ SOURCES += \
 	XPCF_Properties_wrap.cxx \
 	XPCF_Traits_wrap.cxx \
 
+DEFINES += SWIG
+
 unix:!android {
     QMAKE_CXXFLAGS += -Wignored-qualifiers
     QMAKE_LINK=clang++
