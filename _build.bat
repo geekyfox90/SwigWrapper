@@ -3,7 +3,7 @@ cls
 SET CURRENTDIR=%cd%
 echo Apply BuildCSharp bat file in SolARPipelineManager folder
 
-cd ..\..\..\modules\SolARPipelineManager\
+cd ..\..\SolARPipelineManager\
 call BuildCSharp.bat
 cd %CURRENTDIR%
 
