@@ -3,7 +3,7 @@ cls
 SET CURRENTDIR=%cd%
 echo Apply BuildCSharp bat file in SolARPipelineManager folder
 
-cd ..\..\SolARPipelineManager\
+cd ..\..\..\modules\SolARPipelineManager\
 call BuildCSharp.bat
 cd %CURRENTDIR%
 
@@ -32,8 +32,8 @@ ECHO ##########
 ECHO # %%F
 SET F=%%~nF
 SET OUTPUT=%OUT%\!F:_=\!
-DEL /Q "!OUTPUT!\*.*"
 IF NOT EXIST "!OUTPUT!" MKDIR "!OUTPUT!"
+DEL /Q "!OUTPUT!\*.*"
 CALL SWIG ^
  %OPTIONS% ^
  -namespace !F:_=.! ^
