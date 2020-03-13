@@ -9,11 +9,12 @@ cd %CURRENTDIR%
 
 setlocal ENABLEDELAYEDEXPANSION
 
-PUSHD %~dp0
-
 SET LANG=csharp
 SET COMPILER=win-cl-14.1
-SET OUT=%REMAKEN_PKG_ROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper\%LANG%
+SET SOLAR_WRAPPER_VERSION=0.7.0
+SET SOLAR_VERSION=0.7.0
+SET XPCF_VERSION=2.3.1
+SET OUT=%REMAKEN_PKG_ROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper\%SOLAR_WRAPPER_VERSION%\%LANG%
 
 SET OPTIONS=^
  -c++ ^
@@ -22,8 +23,8 @@ SET OPTIONS=^
  -outcurrentdir ^
  -I./Swig ^
  -I./Swig/include ^
- -I%REMAKEN_PKG_ROOT%/packages/%COMPILER%/xpcf/2.3.1/interfaces ^
- -I%REMAKEN_PKG_ROOT%/packages/SolARBuild/%COMPILER%/SolARFramework/0.7.0/interfaces ^
+ -I%REMAKEN_PKG_ROOT%/packages/%COMPILER%/xpcf/%XPCF_VERSION%/interfaces ^
+ -I%REMAKEN_PKG_ROOT%/packages/SolARBuild/%COMPILER%/SolARFramework/%SOLAR_VERSION%/interfaces ^
  -dllimport SolARWrapper ^
  
 
@@ -41,11 +42,6 @@ CALL SWIG ^
  %%F
 )
 
-POPD
-
-xcopy "*.cxx" "%REMAKEN_PKG_ROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
-xcopy "*.txt" "%REMAKEN_PKG_ROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
-xcopy "*.in" "%REMAKEN_PKG_ROOT%\packages\SolARBuild\%COMPILER%\SolARWrapper" /Y
 GOTO :END
 
 :END
