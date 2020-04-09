@@ -26,15 +26,15 @@ do
     echo -------------------
     echo - $swigfile
     SWIG_FILE_NAME=`basename -s .i $swigfile`
-    OUTPUT="$OUT/$SWIG_FILE_NAME"
+    DIR=${SWIG_FILE_NAME//_/\/}
+    OUTPUT="$OUT/$DIR"
     [ -d "$OUTPUT" ] && rm "$OUTPUT"/*.* || mkdir -p "$OUTPUT"
-    swig -c++ -$LANG -small -O -outcurrentdir -I./Swig -I./Swig/include -I$HOME/.remaken/packages/$COMPILER/xpcf/$XPCF_VERSION/interfaces -I$HOME/.remaken/packages/SolARBuild/$COMPILER/SolARFramework/$SOLAR_VERSION/interfaces -DXPCF_USE_BOOST -dllimport SolARWrapper -namespace $SWIG_FILE_NAME -outdir $OUTPUT $swigfile
+    swig -c++ -$LANG -small -O -outcurrentdir -I./Swig -I./Swig/include -I$HOME/.remaken/packages/$COMPILER/xpcf/$XPCF_VERSION/interfaces -I$HOME/.remaken/packages/SolARBuild/$COMPILER/SolARFramework/$SOLAR_VERSION/interfaces -DXPCF_USE_BOOST -dllimport SolARWrapper -namespace ${SWIG_FILE_NAME//_/.} -outdir $OUTPUT $swigfile
 done
 
 popd
 
-cp "*.cxx" "$HOME/.remaken/packages/SolARBuild/$COMPILER/SolARWrapper"
-cp "*.txt" "$HOME/.remaken/packages/SolARBuild/$COMPILER/SolARWrapper"
-cp "*.in" "$HOME/.remaken/packages/SolARBuild/$COMPILER/SolARWrapper"
+
+
 
 echo ----------------------- completed ----------------------------
