@@ -65,7 +65,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'bc6e150e-ede8-4e35-8af4-0f037edee8ac', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    uploadArchive(BRANCH,"SolARWrapper/${version}/linux","${WORKSPACE}/artifactory/x86_64_shared_release/SolARWrapper${version}_x86_64_shared_release.zip",USERNAME,PASSWORD)
+                    uploadArchive(BRANCH,"SolARWrapper/${version}/linux","${WORKSPACE}/artifactory/x86_64_shared_release/SolARWrapper_${version}_x86_64_shared_release.zip",USERNAME,PASSWORD)
                 }
             }
         }
