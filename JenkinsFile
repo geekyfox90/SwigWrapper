@@ -27,9 +27,12 @@ pipeline {
 
         stage("checkout SolARPipelineManager"){
             steps {
-                git branch: BRANCH, changelog: false, credentialsId: 'github-solarBcom', poll: false, url: 'https://github.com/SolarFramework/SolARPipelineManager.git'
+                dir ("SolARPipelineManager") {
+                    git branch: BRANCH, changelog: false, credentialsId: 'github-solarBcom', poll: false, url: 'https://github.com/SolarFramework/SolARPipelineManager.git'
+                }
             }
         }   
+        
         stage("Build") {
              steps {
                 sh "./_build.sh"
