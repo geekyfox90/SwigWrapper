@@ -32,10 +32,10 @@ pipeline {
                 }
             }
         }   
-        
+
         stage("Build") {
              steps {
-                sh "./_build.sh"
+                sh "./_build.sh SolARPipelineManager"
                 buildModule("")                   
              }
         }

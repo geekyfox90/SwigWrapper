@@ -1,9 +1,10 @@
 @echo off
 clear
 CURRENTDIR=$PWD
+SOLAR_PIPELINE_MANAGER_PATH=$1
 echo Apply BuildCSharp shell file in SolARPipelineManager folder
 
-cd ../../SolARPipelineManager
+cd $SOLAR_PIPELINE_MANAGER_PATH
 ./BuildCSharp.sh
 cd $CURRENTDIR
 
