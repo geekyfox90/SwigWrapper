@@ -8,7 +8,10 @@ pipeline {
     parameters {
         booleanParam(name: 'RELEASE',
             defaultValue: false,
-            description: 'Create a Release')                
+            description: 'Create a Release') 
+        booleanParam(name: 'PRE_RELEASE',
+            defaultValue: false,
+            description: 'Create a Pre Release'                           
     }
     triggers { pollSCM('*/10 * * * *') }   
     stages {
