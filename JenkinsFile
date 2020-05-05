@@ -77,7 +77,7 @@ pipeline {
             }
             steps {                
                 withCredentials([string(credentialsId: 'github-token', variable: 'token')]) {
-                    release("SolARWrapper","SolARWrapper/${version}/linux","SolARWrapper Version ${version} for Linux","${WORKSPACE}/artifactory/x86_64_shared_release/SolARWrapper_${version}_x86_64_shared_release.zip ${WORKSPACE}/artifactory/x86_64_shared_debug/SolARWrapper_${version}_x86_64_shared_debug.zip",token);
+                    release("SwigWrapper","SolARWrapper/${version}/linux","SolARWrapper Version ${version} for Linux","${WORKSPACE}/artifactory/x86_64_shared_release/SolARWrapper_${version}_x86_64_shared_release.zip ${WORKSPACE}/artifactory/x86_64_shared_debug/SolARWrapper_${version}_x86_64_shared_debug.zip",token);
                 }
             }   
         }    
